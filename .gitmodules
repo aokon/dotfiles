@@ -46,3 +46,21 @@
 [submodule "vim/bundle/kompleter"]
 	path = vim/bundle/kompleter
 	url = https://github.com/szw/vim-kompleter.git
+[submodule "vim/bundle/endwise"]
+	path = vim/bundle/endwise
+	url = https://github.com/tpope/vim-endwise
+[submodule "vim/bundle/bundler"]
+	path = vim/bundle/bundler
+	url = https://github.com/tpope/vim-bundler
+[submodule "vim/bundle/rake"]
+	path = vim/bundle/rake
+	url = https://github.com/tpope/vim-rake.git
+[submodule "vim/bundle/tags"]
+	path = vim/bundle/tags
+	url = https://github.com/szw/vim-tags.git
+[submodule "vim/bundle/ri"]
+	path = vim/bundle/ri
+	url = https://github.com/danchoi/ri.vim.git
+[submodule "vim/bundle/coffee-script"]
+	path = vim/bundle/coffee-script
+	url = https://github.com/kchmck/vim-coffee-script.git

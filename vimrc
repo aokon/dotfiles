@@ -22,7 +22,7 @@
 	syntax on 					" syntax highlighting
 	scriptencoding utf-8
     filetype off
-	filetype plugin indent on  	" Automatically detect file types.
+	filetype plugin indent on   	" Automatically detect file types.
 
 	set history=100     " how many lines of history to remember
 	set mouse=a					" automatically enable mouse usage
@@ -109,6 +109,7 @@
   autocmd BufNewFile,BufRead *.coffee set filetype=coffee
   autocmd BufNewFile,BufRead *.less set filetype=less
   autocmd BufNewFile,BufRead *.phtml set filetype=php
+  autocmd BufNewFile,BufRead Capfile set filetype=ruby
 " }
 
 " Folding {
@@ -138,7 +139,7 @@
   " BufferExplorer {
     map <C-B> :BufExplorer<CR>
   " }
-  
+
    " Ctags {
       set tags=./tags;/,~/.vimtags
       let Tlist_Enable_Fold_Column = 0 " Do not show folding tree
@@ -146,7 +147,7 @@
       let Tlist_WinWidth = 40 " 40 cols wide, so i can (almost always) read my functions
       let Tlist_Use_Right_Window = 1
 
-      map <leader>r :TlistToggle<CR>
+      map <leader>t :TlistToggle<CR>
 
     " }
 
@@ -167,7 +168,7 @@
 
     " ctrlp {
         let g:ctrlp_working_path_mode = 'ra'
-        nnoremap <silent> <leader>t :CtrlP<CR>
+        nnoremap <silent> <leader>s :CtrlP<CR>
         let g:ctrlp_custom_ignore = {
             \ 'dir': '\.git$\|\.hg$\|\.svn$',
             \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
