@@ -1,0 +1,36 @@
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/bundle/vim-railscasts-theme"]
+	path = vim/bundle/vim-railscasts-theme
+	url = https://github.com/jpo/vim-railscasts-theme.git
+[submodule "vim/bundle/fugitive"]
+	path = vim/bundle/fugitive
+	url = http://github.com/tpope/vim-fugitive.git
+[submodule "vim/bundle/nerdcommenter"]
+	path = vim/bundle/nerdcommenter
+	url = http://github.com/scrooloose/nerdcommenter.git
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule "vim/bundle/delimit-mate"]
+	path = vim/bundle/delimit-mate
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule "vim/bundle/checksyntax"]
+	path = vim/bundle/checksyntax
+	url = https://github.com/tomtom/checksyntax_vim.git
+[submodule "vim/bundle/surround"]
+	path = vim/bundle/surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vim/bundle/textile"]
+	path = vim/bundle/textile
+	url = https://github.com/timcharper/textile.vim.git
+[submodule "vim/bundle/scss"]
+	path = vim/bundle/scss
+	url = https://github.com/cakebaker/scss-syntax.vim.git
+[submodule "vim/bundle/rails"]
+	path = vim/bundle/rails
+	url = https://github.com/tpope/vim-rails.git
+[submodule "vim/bundle/taglist"]
+	path = vim/bundle/taglist
+	url = https://github.com/vim-scripts/taglist.vim.git
