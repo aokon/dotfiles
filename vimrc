@@ -129,9 +129,6 @@
   noremap j gj
   noremap k gk
 
-  "taglist key map
-  map <F3> :TlistToggle<CR>
-
   " Fast saving
   nmap <leader>w :w<cr> 
 
@@ -141,4 +138,41 @@
   " BufferExplorer {
     map <C-B> :BufExplorer<CR>
   " }
+  
+   " Ctags {
+      set tags=./tags;/,~/.vimtags
+      let Tlist_Enable_Fold_Column = 0 " Do not show folding tree
+      let Tlist_Show_Menu = 1
+      let Tlist_WinWidth = 40 " 40 cols wide, so i can (almost always) read my functions
+      let Tlist_Use_Right_Window = 1
+
+      map <C-r> :TlistToggle<CR>
+
+    " }
+    
+    " Delimitmate {
+		au FileType * let b:delimitMate_autoclose = 1
+		" If using html auto complete (complete closing tag)
+        au FileType xml,html,xhtml let b:delimitMate_matchpairs = "(:),[:],{:}"
+	" }
+	
+	" AutoCloseTag {
+		" Make it so AutoCloseTag works for xml and xhtml files as well
+		au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
+	" }
+    
+    " NerdTree {
+        map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+        map <leader>e :NERDTreeFind<CR>
+        nmap <leader>nt :NERDTreeFind<CR>
+
+        let NERDTreeShowBookmarks=1
+        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+        let NERDTreeChDirMode=0
+        let NERDTreeMouseMode=2
+        let NERDTreeShowHidden=1
+        let NERDTreeKeepTreeInNewTab=1
+        let g:nerdtree_tabs_open_on_gui_startup=0
+    " }
+ 
 " }
