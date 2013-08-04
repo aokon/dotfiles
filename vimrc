@@ -21,7 +21,7 @@
 " General {
 	syntax on 					" syntax highlighting
 	scriptencoding utf-8
-  filetype off
+    filetype off
 	filetype plugin indent on  	" Automatically detect file types.
 
 	set history=100     " how many lines of history to remember
@@ -60,12 +60,12 @@
 	if has('statusline')
 		set laststatus=2           	" always show statusline
 		" Use the commented line if fugitive isn't installed
-    set statusline=%<%f\ " Filename
-    set statusline+=%w%h%m%r " Options
-    set statusline+=%{fugitive#statusline()} " Git Hotness
-    set statusline+=\ [%{&ff}/%Y/%{&encoding}] " Filetype
-    set statusline+=\ [%{getcwd()}] " Current dir
-    set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
+        set statusline=%<%f\ " Filename
+        set statusline+=%w%h%m%r " Options
+        set statusline+=%{fugitive#statusline()} " Git Hotness
+        set statusline+=\ [%{&ff}/%Y/%{&encoding}] " Filetype
+        set statusline+=\ [%{getcwd()}] " Current dir
+        set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
 	endif
 
 	set lazyredraw            " do not redraw while running macros (much faster) (LazyRedraw)
@@ -107,15 +107,14 @@
 
   autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2
   autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-	autocmd BufNewFile,BufRead *.less set filetype=less
-	autocmd BufNewFile,BufRead *.phtml set filetype=php
+  autocmd BufNewFile,BufRead *.less set filetype=less
+  autocmd BufNewFile,BufRead *.phtml set filetype=php
 " }
 
 " Folding {
 	set foldenable " Turn on folding
 	set foldmethod=syntax " Make folding 'indent' sensitive or not
 	set foldlevel=100 " Don't autofold anything (but I can still fold manually)
-	"set foldopen-=search " don't open folds when you search into them
 	set foldopen-=undo " don't open folds when you undo stuff
 " }
 
@@ -135,8 +134,6 @@
 
   " Fast saving
   nmap <leader>w :w<cr> 
-
-    
 
 " }
 
