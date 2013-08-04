@@ -146,9 +146,13 @@
       let Tlist_WinWidth = 40 " 40 cols wide, so i can (almost always) read my functions
       let Tlist_Use_Right_Window = 1
 
-      map <C-r> :TlistToggle<CR>
+      map <leader>r :TlistToggle<CR>
 
     " }
+
+    " YankRing {
+		let g:yankring_history_dir = expand('$HOME') . '/.vimswap'
+	" }
     
     " Delimitmate {
 		au FileType * let b:delimitMate_autoclose = 1
@@ -160,6 +164,19 @@
 		" Make it so AutoCloseTag works for xml and xhtml files as well
 		au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
 	" }
+
+    " ctrlp {
+        let g:ctrlp_working_path_mode = 'ra'
+        nnoremap <silent> <leader>t :CtrlP<CR>
+        let g:ctrlp_custom_ignore = {
+            \ 'dir': '\.git$\|\.hg$\|\.svn$',
+            \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+    "} 
+
+    " Supertab {
+        let g:SuperTabMappingForward = '<Plug>supertabKey'
+        let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+	" }
     
     " NerdTree {
         map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
@@ -167,12 +184,10 @@
         nmap <leader>nt :NERDTreeFind<CR>
 
         let NERDTreeShowBookmarks=1
-        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.svn', '\.bzr']
         let NERDTreeChDirMode=0
         let NERDTreeMouseMode=2
-        let NERDTreeShowHidden=1
         let NERDTreeKeepTreeInNewTab=1
-        let g:nerdtree_tabs_open_on_gui_startup=0
     " }
  
 " }

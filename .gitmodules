@@ -37,3 +37,12 @@
 [submodule "vim/bundle/bufexplorer"]
 	path = vim/bundle/bufexplorer
 	url = https://github.com/aokon/vim-bufexplorer
+[submodule "vim/bundle/yankring"]
+	path = vim/bundle/yankring
+	url = https://github.com/vim-scripts/YankRing.vim.git
+[submodule "vim/bundle/crtlp"]
+	path = vim/bundle/crtlp
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule "vim/bundle/kompleter"]
+	path = vim/bundle/kompleter
+	url = https://github.com/szw/vim-kompleter.git
