@@ -1,0 +1,18 @@
+[user]
+	name = Adam Okoń
+	email = adam@okon.eu
+
+[color]
+  diff        = auto
+  status      = auto
+  branch      = auto
+  interactive = auto
+  ui          = auto
+
+[core]
+	excludesfile = ~/.gitignore_global
+
+  trustctime = false
+
+[merge]
+  tool = vimdiff
