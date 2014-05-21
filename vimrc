@@ -34,11 +34,11 @@
 		"set backup 					" backups are nice ...
         set backupdir=$HOME/.vimbackup  " but not when they clog .
         set directory=$HOME/.vimswap 	" Same for swap files
-		
+
 		" Creating directories if they don't exist
         silent execute '!mkdir -p $HOME/.vimbackup'
         silent execute '!mkdir -p $HOME/.vimswap'
-        
+
         set nobackup
         set noswapfile
 	" }
@@ -77,7 +77,7 @@
 	set showmatch          	        " show matching brackets/parenthesis
 	set incsearch 					" find as you type search
 	set hlsearch 					" highlight search terms
-	set winminheight=0 			    " windows can be 0 line high 
+	set winminheight=0 			    " windows can be 0 line high
 	set ignorecase 					" case insensitive search
 	set smartcase 					" case sensitive when uc present
 	set wildmenu 					" show list instead of just completing
@@ -94,13 +94,13 @@
 	set wrap                " wrap long lines
 	set autoindent          " indent at the same level of the previous line
 	set smartindent         " smart autoindenting for C programs
-	set shiftwidth=4       	" use indents of 4 spaces
+	set shiftwidth=2       	" use indents of 4 spaces
 	set expandtab 	       	" dont use tabs
-	set tabstop=4 			" an indentation every four columns
+	set tabstop=2 			" an indentation every four columns
 	set softtabstop=2
 	set nosmarttab
 
-	"set matchpairs+=<:>             " match, to be used with % 
+	"set matchpairs+=<:>             " match, to be used with %
 	set pastetoggle=<F12>          	 " pastetoggle (sane indentation on pastes)
 	"set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 	set formatoptions+=n
@@ -110,6 +110,16 @@
   autocmd BufNewFile,BufRead *.less set filetype=less
   autocmd BufNewFile,BufRead *.phtml set filetype=php
   autocmd BufNewFile,BufRead Capfile set filetype=ruby
+" }
+
+
+" Highlight whitespaces {
+  highlight ExtraWhitespace ctermbg=red guibg=red
+  match ExtraWhitespace /\s\+$/
+  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+  autocmd BufWinLeave * call clearmatches()
 " }
 
 " Folding {
@@ -131,7 +141,7 @@
   noremap k gk
 
   " Fast saving
-  nmap <leader>w :w<cr> 
+  nmap <leader>w :w<cr>
 
 " }
 
@@ -154,13 +164,13 @@
     " YankRing {
 		let g:yankring_history_dir = expand('$HOME') . '/.vimswap'
 	" }
-    
+
     " Delimitmate {
 		au FileType * let b:delimitMate_autoclose = 1
 		" If using html auto complete (complete closing tag)
         au FileType xml,html,xhtml let b:delimitMate_matchpairs = "(:),[:],{:}"
 	" }
-	
+
 	" AutoCloseTag {
 		" Make it so AutoCloseTag works for xml and xhtml files as well
 		au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
@@ -172,13 +182,13 @@
         let g:ctrlp_custom_ignore = {
             \ 'dir': '\.git$\|\.hg$\|\.svn$',
             \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
-    "} 
+    "}
 
     " Supertab {
         let g:SuperTabMappingForward = '<Plug>supertabKey'
         let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
 	" }
-    
+
     " NerdTree {
         map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
         map <leader>e :NERDTreeFind<CR>
@@ -190,5 +200,5 @@
         let NERDTreeMouseMode=2
         let NERDTreeKeepTreeInNewTab=1
     " }
- 
+
 " }
