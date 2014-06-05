@@ -10,3 +10,5 @@
 /tmp/**/*
 tags
 /coverage
+*~
+.DS_Store
