@@ -22,7 +22,7 @@ Vim package includes following addons:
 - crtlp
 - endwise
 - fugitive
-- kompleter
+- YouCompleteMe
 - nerdtree
 - rails
 - rake

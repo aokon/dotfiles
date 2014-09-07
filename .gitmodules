@@ -43,9 +43,6 @@
 [submodule "vim/bundle/crtlp"]
 	path = vim/bundle/crtlp
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule "vim/bundle/kompleter"]
-	path = vim/bundle/kompleter
-	url = https://github.com/szw/vim-kompleter.git
 [submodule "vim/bundle/endwise"]
 	path = vim/bundle/endwise
 	url = https://github.com/tpope/vim-endwise
@@ -67,3 +64,6 @@
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
+[submodule "vim/bundle/YouCompelete"]
+	path = vim/bundle/YouCompelete
+	url = https://github.com/Valloric/YouCompleteMe.git
