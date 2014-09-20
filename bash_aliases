@@ -1,3 +1,4 @@
+alias v='vim -c NERDTree 2> /dev/null'
 alias gv='gvim -c NERDTree 2> /dev/null'
 alias c='clear'
 
@@ -7,8 +8,12 @@ alias as='apt-cache search'
 
 #rails/ruby
 alias r='rails'
+alias br='bin/rails'
+alias brk='bin/rake'
 alias be='bundle exec'
 alias bi='bundle install'
+alias bu='bundle update'
+alias bo='bundle outdate'
 alias rdm='rake db:migrate'
 alias rdr='rake db:rollback'
 
@@ -20,6 +25,7 @@ alias mysql-stop='/usr/local/Cellar/mysql/5.6.17/support-files/mysql.server stop
 
 #git
 alias gta='git add'
+alias gco='git commit -m'
 alias gts='git status'
 alias giff='git diff'
 alias gpf='git push -f'
