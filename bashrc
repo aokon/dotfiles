@@ -1,10 +1,5 @@
-export CLICOLOR=1                                                           
+export CLICOLOR=1
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+set -o vi #add vi mode into terminal
 
-#add vi mode into terminal
-set -o vi
-
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
-fi
+[[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases" # Load bash_aliases
