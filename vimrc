@@ -191,10 +191,6 @@
             \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
     "}
 
-    " Supertab {
-        let g:SuperTabMappingForward = '<Plug>supertabKey'
-        let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
-	" }
 
     " NerdTree {
         map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>

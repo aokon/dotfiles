@@ -67,3 +67,6 @@
 [submodule "vim/bundle/YouCompelete"]
 	path = vim/bundle/YouCompelete
 	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "vim/bundle/snipmate-snippets-rubymotion"]
+	path = vim/bundle/snipmate-snippets-rubymotion
+	url = https://github.com/rcyrus/snipmate-snippets-rubymotion.git
