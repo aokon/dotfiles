@@ -52,9 +52,6 @@
 [submodule "vim/bundle/rake"]
 	path = vim/bundle/rake
 	url = https://github.com/tpope/vim-rake.git
-[submodule "vim/bundle/tags"]
-	path = vim/bundle/tags
-	url = https://github.com/szw/vim-tags.git
 [submodule "vim/bundle/ri"]
 	path = vim/bundle/ri
 	url = https://github.com/danchoi/ri.vim.git
@@ -64,9 +61,3 @@
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
-[submodule "vim/bundle/YouCompelete"]
-	path = vim/bundle/YouCompelete
-	url = https://github.com/Valloric/YouCompleteMe.git
-[submodule "vim/bundle/snipmate-snippets-rubymotion"]
-	path = vim/bundle/snipmate-snippets-rubymotion
-	url = https://github.com/rcyrus/snipmate-snippets-rubymotion.git
