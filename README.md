@@ -24,7 +24,6 @@ Vim package includes following plugins:
 - crtlp
 - endwise
 - fugitive
-- YouCompleteMe
 - nerdtree
 - rails
 - rake
@@ -38,7 +37,6 @@ Vim package includes following plugins:
 - yankring
 - nerdcommenter
 - surround
-- tags
 
 Instalation
 -----------
