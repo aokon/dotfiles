@@ -45,8 +45,8 @@
 " }
 
 " Vim UI {
-	color railscasts     	    " load a colorscheme, for gvim in GUI settings
-  set background=dark     		" Assume a dark background
+	color Tomorrow-Night        " load a colorscheme, for gvim in GUI settings
+    set background=dark         " Assume a dark background
 	set cursorline  		    " highlight current line
 	set showmode               	" display the current mode
 

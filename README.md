@@ -34,6 +34,7 @@ Vim package includes following plugins:
 - supertab
 - textile
 - vim-railscasts-theme
+- Tomorrow-Theme
 - yankring
 - nerdcommenter
 - surround
