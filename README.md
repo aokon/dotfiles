@@ -44,7 +44,6 @@ Instalation
 
 Clone this repository in your local dir and make symlink for selected util in your $HOME dir.
 In the next step run `git submodule init` and `git submodule update` to fetch latest version of vim's plugins.
-YouCompleteMe requires additional setup, so please go to the bundle/YouComplete and read the README.
 
 Updating vim plugins
 --------------------
