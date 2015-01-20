@@ -38,6 +38,7 @@ Vim package includes following plugins:
 - yankring
 - nerdcommenter
 - surround
+- vim-handlebars
 
 Instalation
 -----------
