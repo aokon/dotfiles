@@ -39,6 +39,7 @@ Vim package includes following plugins:
 - nerdcommenter
 - surround
 - vim-handlebars
+- vim-slim
 
 Instalation
 -----------
