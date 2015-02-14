@@ -110,6 +110,7 @@
   autocmd BufNewFile,BufRead *.less set filetype=less
   autocmd BufNewFile,BufRead *.phtml set filetype=php
   autocmd BufNewFile,BufRead Capfile set filetype=ruby
+  autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 " }
 
 
