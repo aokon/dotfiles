@@ -64,9 +64,9 @@
 [submodule "vim/bundle/tomorrow-theme-vim"]
 	path = vim/bundle/tomorrow-theme-vim
 	url = https://github.com/d11wtq/tomorrow-theme-vim
-[submodule "vim/bundle/vim-handlerbars"]
-	path = vim/bundle/vim-handlerbars
-	url = git@github.com:nono/vim-handlebars.git
 [submodule "vim/bundle/vim-slim"]
 	path = vim/bundle/vim-slim
 	url = git@github.com:slim-template/vim-slim.git
+[submodule "vim/bundle/vim-mustache-handlebars"]
+	path = vim/bundle/vim-mustache-handlebars
+	url = https://github.com/mustache/vim-mustache-handlebars.git

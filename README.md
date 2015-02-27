@@ -38,7 +38,7 @@ Vim package includes following plugins:
 - yankring
 - nerdcommenter
 - surround
-- vim-handlebars
+- vim-mustache-handlebars
 - vim-slim
 
 Instalation
