@@ -18,6 +18,11 @@ alias bo='b outdate'
 alias rdm='brk db:migrate'
 alias rdr='brk db:rollback'
 
+#ember/node
+alias e='ember'
+alias ni='npm install --save-dev'
+alias bwi='bower install --save-dev'
+
 #osx
 alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias pg-stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
