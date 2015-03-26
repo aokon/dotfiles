@@ -186,9 +186,12 @@
     " ctrlp {
         let g:ctrlp_working_path_mode = 'ra'
         nnoremap <silent> <leader>s :CtrlP<CR>
+        set wildignore+=*/tmp/*
+        set wildignore+=*/bower_components/*
+        set wildignore+=*/node_modules/*
         let g:ctrlp_custom_ignore = {
-            \ 'dir': '\.git$\|\.hg$\|\.svn$',
-            \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+                        \ 'dir': '\.git$\|\.hg$\|\.svn$',
+                        \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
     "}
 
 
