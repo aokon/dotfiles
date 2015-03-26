@@ -94,7 +94,7 @@
 	set wrap                " wrap long lines
 	set autoindent          " indent at the same level of the previous line
 	set smartindent         " smart autoindenting for C programs
-	set shiftwidth=2       	" use indents of 4 spaces
+	set shiftwidth=2       	" use indents of 2 spaces
 	set expandtab 	       	" dont use tabs
 	set tabstop=2 			" an indentation every four columns
 	set softtabstop=2
@@ -105,7 +105,7 @@
 	"set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 	set formatoptions+=n
 
-  "autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2
+  autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=8
   autocmd BufNewFile,BufRead *.coffee set filetype=coffee
   autocmd BufNewFile,BufRead *.less set filetype=less
   autocmd BufNewFile,BufRead *.phtml set filetype=php
