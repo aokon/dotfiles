@@ -1,4 +1,5 @@
 alias v='vim -c NERDTree 2> /dev/null'
+alias nv='nvim -c NERDTree 2> /dev/null'
 alias gv='gvim -c NERDTree 2> /dev/null'
 alias c='clear'
 
@@ -36,6 +37,7 @@ alias gc='git checkout'
 alias gts='git status'
 alias giff='git diff'
 alias gpf='git push -f'
+alias gpu='git push'
 alias gp='git pull'
 alias gb='git branch'
 alias gri='git rebase -i'
