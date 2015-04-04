@@ -144,6 +144,9 @@
   " Fast saving
   nmap <leader>w :w<cr>
 
+  " Run ack
+  nmap <leader>a <Esc>:Ack!
+
 " }
 
 " Plugins {
