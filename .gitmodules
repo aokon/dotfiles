@@ -82,3 +82,6 @@
 [submodule "vim/bundle/YouCompleteMe"]
 	path = vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "vim/bundle/closetag"]
+	path = vim/bundle/closetag
+	url = https://github.com/docunext/closetag.vim.git
