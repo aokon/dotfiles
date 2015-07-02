@@ -98,6 +98,7 @@
 	set expandtab 	       	" dont use tabs
 	set tabstop=2 			" an indentation every four columns
 	set softtabstop=2
+    set colorcolumn=80
 	set nosmarttab
 
 	"set matchpairs+=<:>             " match, to be used with %
