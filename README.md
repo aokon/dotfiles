@@ -40,6 +40,7 @@ Vim package includes following plugins:
 - surround
 - vim-mustache-handlebars
 - vim-slim
+- vim-airline
 
 Instalation
 -----------

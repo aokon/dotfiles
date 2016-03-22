@@ -13,27 +13,27 @@
 " }
 
 " Basics {
-	set nocompatible  " must be first line
-	set hidden        " buffer becomes hidden when it is abandoned
+	set nocompatible                                        " must be first line
+	set hidden                                              " buffer becomes hidden when it is abandoned
 " }
 
 
 " General {
-	syntax on 					" syntax highlighting
+	syntax on 					                            " syntax highlighting
 	scriptencoding utf-8
     filetype off
-	filetype plugin indent on   " Automatically detect file types.
+	filetype plugin indent on                               " Automatically detect file types.
 
-	set history=100             " how many lines of history to remember
-	set mouse=a					" automatically enable mouse usage
-	set noerrorbells            " don't make noise on error messages
-	set novisualbell            " don't blink
+	set history=100                                         " how many lines of history to remember
+	set mouse=a					                            " automatically enable mouse usage
+	set noerrorbells                                        " don't make noise on error messages
+	set novisualbell                                        " don't blink
 	set autowrite
 
 	" Setting up the directories {
-		"set backup 					" backups are nice ...
-        set backupdir=$HOME/.vimbackup  " but not when they clog .
-        set directory=$HOME/.vimswap 	" Same for swap files
+		"set backup 					                    " backups are nice ...
+        set backupdir=$HOME/.vimbackup                      " but not when they clog .
+        set directory=$HOME/.vimswap 	                    " Same for swap files
 
 		" Creating directories if they don't exist
         silent execute '!mkdir -p $HOME/.vimbackup'
@@ -45,48 +45,37 @@
 " }
 
 " Vim UI {
-	color Tomorrow-Night        " load a colorscheme, for gvim in GUI settings
-    set background=dark         " Assume a dark background
-	set cursorline  		    " highlight current line
-	set showmode               	" display the current mode
+	color Tomorrow-Night                                    " load a colorscheme, for gvim in GUI settings
+    set background=dark                                     " Assume a dark background
+	set cursorline  		                                " highlight current line
+	set showmode               	                            " display the current mode
 
 	if has('cmdline_info')
-		set ruler                  	                       " show the ruler
-		set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
-		set showcmd                	                       " show partial commands in status line and
-									                       " selected characters/lines in visual mode
+		set ruler                  	                        " show the ruler
+		set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)  " a ruler on steroids
+		set showcmd                	                        " show partial commands in status line and
+									                        " selected characters/lines in visual mode
 	endif
 
-	if has('statusline')
-		set laststatus=2           	               " always show statusline
-		" Use the commented line if fugitive isn't installed
-        set statusline=%<%f\ " Filename
-        set statusline+=%w%h%m%r " Options
-        set statusline+=%{fugitive#statusline()}   " Git Hotness
-        set statusline+=\ [%{&ff}/%Y/%{&encoding}] " Filetype
-        set statusline+=\ [%{getcwd()}]            " Current dir
-        set statusline+=%=%-14.(%l,%c%V%)\ %p%%    " Right aligned file nav info
-	endif
-
-	set lazyredraw                  " do not redraw while running macros (much faster) (LazyRedraw)
+	set lazyredraw                                          " do not redraw while running macros (much faster) (LazyRedraw)
 	set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$ " what to show when I hit :set list
 
-	set backspace=indent,eol,start 	" make backspace work normal (indent, eol, start)
-	set linespace=0					" could be < 0
-	set number 						" Line numbers on
-	set showmatch          	        " show matching brackets/parenthesis
-	set incsearch 					" find as you type search
-	set hlsearch 					" highlight search terms
-	set winminheight=0 			    " windows can be 0 line high
-	set ignorecase 					" case insensitive search
-	set smartcase 					" case sensitive when uc present
-	set wildmenu 					" show list instead of just completing
-	set wildmode=list:longest,full 	" comand <Tab> completion, list matches, then longest common part, then all.
-	set whichwrap+=<,>,[,]          " allow backspace and cursor keys to cross line boundaries
-	set scrolljump=0 				" lines to scroll when cursor leaves screen
-	set scrolloff=5 				" minimum lines to keep above and below cursor
-	set foldenable  				" auto fold code
-	set gdefault					" the /g flag on :s substitutions by default
+	set backspace=indent,eol,start 	                        " make backspace work normal (indent, eol, start)
+	set linespace=0					                        " could be < 0
+	set number 						                        " Line numbers on
+	set showmatch          	                                " show matching brackets/parenthesis
+	set incsearch 					                        " find as you type search
+	set hlsearch 					                        " highlight search terms
+	set winminheight=0 			                            " windows can be 0 line high
+	set ignorecase 					                        " case insensitive search
+	set smartcase 					                        " case sensitive when uc present
+	set wildmenu 					                        " show list instead of just completing
+	set wildmode=list:longest,full 	                        " comand <Tab> completion, list matches, then longest common part, then all.
+	set whichwrap+=<,>,[,]                                  " allow backspace and cursor keys to cross line boundaries
+	set scrolljump=0 				                        " lines to scroll when cursor leaves screen
+	set scrolloff=5 				                        " minimum lines to keep above and below cursor
+	set foldenable  				                        " auto fold code
+	set gdefault					                        " the /g flag on :s substitutions by default
 " }
 
 
