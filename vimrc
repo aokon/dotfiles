@@ -45,10 +45,10 @@
 " }
 
 " Vim UI {
-	color Tomorrow-Night                                    " load a colorscheme, for gvim in GUI settings
-    set background=dark                                     " Assume a dark background
-	set cursorline  		                                " highlight current line
-	set showmode               	                            " display the current mode
+    set background=light                              " Assume a dark background
+	color solarized                                   " load a colorscheme, for gvim in GUI settings
+	set cursorline  	                              " highlight current line
+	set showmode                                      " display the current mode
 
 	if has('cmdline_info')
 		set ruler                  	                        " show the ruler
