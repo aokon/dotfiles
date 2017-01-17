@@ -29,6 +29,7 @@
 	set noerrorbells                                        " don't make noise on error messages
 	set novisualbell                                        " don't blink
 	set autowrite
+    set spell spelllang=en_gb
 
 	" Setting up the directories {
 		"set backup 					                    " backups are nice ...
