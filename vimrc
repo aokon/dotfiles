@@ -6,12 +6,6 @@
 " and Daniel Stokowiec.
 " }
 
-" Setup Bundle Support {
-" The next two lines ensure that the ~/.vim/bundle/ system works
-	runtime! autoload/pathogen.vim
-	silent! call pathogen#runtime_append_all_bundles()
-" }
-
 " Basics {
 	set nocompatible                                        " must be first line
 	set hidden                                              " buffer becomes hidden when it is abandoned
