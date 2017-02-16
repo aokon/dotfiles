@@ -90,12 +90,12 @@
 	"set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 	set formatoptions+=n
 
-  autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=8
-  autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-  autocmd BufNewFile,BufRead *.less set filetype=less
-  autocmd BufNewFile,BufRead *.phtml set filetype=php
-  autocmd BufNewFile,BufRead Capfile set filetype=ruby
-  autocmd BufNewFile,BufRead *.es6 setfiletype javascript
+    autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=8
+    autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+    autocmd BufNewFile,BufRead *.less set filetype=less
+    autocmd BufNewFile,BufRead *.phtml set filetype=php
+    autocmd BufNewFile,BufRead Capfile set filetype=ruby
+    autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 " }
 
 
@@ -182,7 +182,6 @@
                         \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
     "}
 
-
     " NerdTree {
         map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
         map <leader>e :NERDTreeFind<CR>
@@ -195,4 +194,9 @@
         let NERDTreeKeepTreeInNewTab=1
     " }
 
+    " UltiSnips {
+        let g:UltiSnipsExpandTrigger="<c-j>"
+        let g:UltiSnipsJumpForwardTrigger="<c-k>"
+        let g:UltiSnipsJumpBackwardTrigger="<c-l>"
+    " }
 " }
