@@ -1,6 +1,4 @@
 alias v='vim -c NERDTree 2> /dev/null'
-alias nv='nvim -c NERDTree 2> /dev/null'
-alias gv='gvim -c NERDTree 2> /dev/null'
 alias c='clear'
 
 #ubuntu
