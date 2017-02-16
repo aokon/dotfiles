@@ -48,8 +48,6 @@ Instalation
 Clone this repository in your local dir and make symlink for selected util in your $HOME dir.
 In the next step run `git submodule init` and `git submodule update` to fetch latest version of vim's plugins.
 
-Please keep on mind that neovim changed config setup and it requires symlink to the vimrc in the `vim/init.vim`.
-
 Updating vim plugins
 --------------------
 
