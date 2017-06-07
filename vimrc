@@ -132,6 +132,9 @@
   " Run ack
   nmap <leader>a <Esc>:Ack!
 
+  " Toggle light/dark backgrounds
+  " based on https://github.com/csswizardry/dotfiles/blob/b5f055ce7a189e5dc5bed49a6f9d4e052e7662eb/.vimrc#L241-L242
+  nnoremap <Leader>bg :let &background = (&background == "dark" ? "light" : "dark")<CR>
 " }
 
 " Plugins {
