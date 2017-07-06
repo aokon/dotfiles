@@ -112,3 +112,6 @@
 [submodule "vim/pack/plugins/start/vim-polyglot"]
 	path = vim/pack/plugins/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot
+[submodule "vim/pack/plugins/start/syntastic"]
+	path = vim/pack/plugins/start/syntastic
+	url = git@github.com:vim-syntastic/syntastic.git
