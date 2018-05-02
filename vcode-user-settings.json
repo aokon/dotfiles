@@ -1,0 +1,45 @@
+{
+    "workbench.colorTheme": "Solarized Light",
+    "telemetry.enableTelemetry": false,
+    "editor.tabSize": 2,
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": ["leader", "w"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "c", "c"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.addCommentLine",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "c", "u"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.removeCommentLine",
+                    "args": []
+                }
+            ]
+        }
+    ],
+    "window.zoomLevel": 0,
+    "typescript.check.npmIsInstalled": false,
+    "files.associations": {
+        "*.inky": "html"
+    },
+    "extensions.ignoreRecommendations": false,
+    "git.enableSmartCommit": true,
+    "explorer.confirmDelete": false
+}
