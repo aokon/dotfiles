@@ -12,43 +12,9 @@ It contains:
 - ruby gems config
 - personal git config
 - personal bash_aliases
-- vim package based on pathogen
 
-Vim package
+Vim plugins
 -----------
 
-Vim package includes following plugins:
-
-- checksyntax
-- bufexplorer
-- crtlp
-- endwise
-- fugitive
-- nerdtree
-- rails
-- rake
-- scss
-- coffee-script
-- ri
-- taglist
-- supertab
-- textile
-- vim-railscasts-theme
-- Tomorrow-Theme
-- yankring
-- nerdcommenter
-- surround
-- vim-mustache-handlebars
-- vim-slim
-- vim-airline
-
-Instalation
------------
-
-Clone this repository in your local dir and make symlink for selected util in your $HOME dir.
-In the next step run `git submodule init` and `git submodule update` to fetch latest version of vim's plugins.
-
-Updating vim plugins
---------------------
-
-Updating the vim plugins is easy, just run `git submodule foreach git pull origin master`.
+Vim plugins are managed by [Vundle](https://github.com/VundleVim/Vundle.vim).
+Check Vundle Readme to get more instalation details
