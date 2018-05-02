@@ -44,6 +44,7 @@
 	set novisualbell                                            " don't blink
 	set autowrite
   set spell spelllang=en_gb
+  set clipboard=unnamedplus
 
 	" Setting up the directories {
 		"set backup 					                                    " backups are nice ...
@@ -146,10 +147,10 @@
   noremap k gk
 
   " Fast saving
-  nmap <leader>w :w<cr>
+  nmap <Leader>w :w<CR>
 
   " Run ack
-  nmap <leader>a <Esc>:Ack!
+  nmap <Leader>a <Esc>:Ack!
 
   " Toggle light/dark backgrounds
   " based on https://github.com/csswizardry/dotfiles/blob/b5f055ce7a189e5dc5bed49a6f9d4e052e7662eb/.vimrc#L241-L242
@@ -174,7 +175,7 @@
     let Tlist_WinWidth = 40          " 40 cols wide, so i can (almost always) read my functions
     let Tlist_Use_Right_Window = 1
 
-    map <leader>t :TlistToggle<CR>
+    map <Leader>t :TlistToggle<CR>
    " }
 
   " Delimitmate {
