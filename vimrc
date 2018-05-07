@@ -26,6 +26,7 @@
   Plugin 'tpope/vim-rails'
   Plugin 'tpope/vim-surround'
   Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-scripts/YankRing.vim'
   Plugin 'w0rp/ale'
 
   call vundle#end()
