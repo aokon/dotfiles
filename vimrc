@@ -45,7 +45,12 @@
 	set novisualbell                                            " don't blink
 	set autowrite
   set spell spelllang=en_gb
-  set clipboard=unnamedplus
+
+  if system('uname -s') == "Darwin\n"
+    set clipboard=unnamed "OSX
+  else
+    set clipboard=unnamedplus "Linux
+  endif
 
 	" Setting up the directories {
 		"set backup 					                                    " backups are nice ...
