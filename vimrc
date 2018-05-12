@@ -213,18 +213,6 @@
     let g:ycm_show_diagnostics_ui = 0
   " }
 
-  " Ctags {
-    set tags=./tags;/,~/.vimtags
-    " Do not show folding tree
-    let Tlist_Enable_Fold_Column = 0
-    let Tlist_Show_Menu = 1
-    " 40 cols wide, so i can (almost always) read my functions
-    let Tlist_WinWidth = 40
-    let Tlist_Use_Right_Window = 1
-
-    map <Leader>t :TlistToggle<CR>
-  " }
-
   " Delimitmate {
     au FileType * let b:delimitMate_autoclose = 1
     " If using html auto complete (complete closing tag)
