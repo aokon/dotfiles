@@ -11,29 +11,42 @@
   " vundle self-management
   Plugin 'gmarik/vundle'
 
+  " general vim improvements
   Plugin 'Raimondi/delimitMate'
-  Plugin 'SirVer/ultisnips'
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'airblade/vim-gitgutter'
-  Plugin 'aokon/vim-bufexplorer'
   Plugin 'bling/vim-bufferline'
-  Plugin 'ervandew/supertab'
   Plugin 'flazz/vim-colorschemes'
   Plugin 'godlygeek/tabular'
+  Plugin 'tpope/vim-surround'
+  Plugin 'vim-scripts/YankRing.vim'
+
+  " file navigation
+  Plugin 'aokon/vim-bufexplorer'
   Plugin 'kien/ctrlp.vim'
-  Plugin 'mileszs/ack.vim'
-  Plugin 'scrooloose/nerdcommenter'
   Plugin 'scrooloose/nerdtree'
+
+  " searching
+  Plugin 'mileszs/ack.vim'
+
+  " code completion
+  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'ervandew/supertab'
+
+  " git related
+  Plugin 'airblade/vim-gitgutter'
+  Plugin 'tpope/vim-fugitive'
+
+  " better developer experience
+  Plugin 'SirVer/ultisnips'
+  Plugin 'scrooloose/nerdcommenter'
   Plugin 'sheerun/vim-polyglot'
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'w0rp/ale'
+
+  " Ruby related
   Plugin 'tpope/vim-bundler'
   Plugin 'tpope/vim-endwise'
-  Plugin 'tpope/vim-fugitive'
   Plugin 'tpope/vim-rails'
   Plugin 'tpope/vim-rake'
-  Plugin 'tpope/vim-surround'
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-scripts/YankRing.vim'
-  Plugin 'w0rp/ale'
 
   call vundle#end()
 " }
