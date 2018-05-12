@@ -1,11 +1,15 @@
 " Basics {
-	set nocompatible                                            " must be first line
-	set hidden                                                  " buffer becomes hidden when it is abandoned
+	set nocompatible
+  " buffer becomes hidden when it is abandoned
+	set hidden
 " }
 
 " Setup Vundle {
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
+
+  " vundle self-management
+  Plugin 'gmarik/vundle'
 
   Plugin 'Raimondi/delimitMate'
   Plugin 'SirVer/ultisnips'
