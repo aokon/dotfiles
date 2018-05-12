@@ -174,6 +174,8 @@
   " YouCompleteMe {
     let g:ycm_collect_identifiers_from_tags_files = 1
     let g:ycm_collect_identifiers_from_comments_and_strings = 1
+    let g:ycm_min_num_identifier_candidate_chars = 2
+    let g:ycm_show_diagnostics_ui = 0
   " }
 
   " Ctags {
@@ -225,4 +227,11 @@
     let g:UltiSnipsJumpForwardTrigger="<c-k>"
     let g:UltiSnipsJumpBackwardTrigger="<c-l>"
   " }
+
+  " Ale {
+    let g:ale_lint_on_text_changed = 'never'
+    let g:ale_lint_on_enter = 0
+    let g:ale_completion_enabled = 0
+  " }
+
 " }
