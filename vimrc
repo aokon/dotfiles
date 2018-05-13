@@ -39,6 +39,7 @@
   Plugin 'SirVer/ultisnips'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'vim-airline/vim-airline'
+  Plugin 'craigemery/vim-autotag'
   Plugin 'w0rp/ale'
 
   " support for syntax
