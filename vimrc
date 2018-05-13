@@ -38,9 +38,11 @@
   " better developer experience
   Plugin 'SirVer/ultisnips'
   Plugin 'scrooloose/nerdcommenter'
-  Plugin 'sheerun/vim-polyglot'
   Plugin 'vim-airline/vim-airline'
   Plugin 'w0rp/ale'
+
+  " support for syntax
+  Plugin 'sheerun/vim-polyglot'
 
   " Ruby related
   Plugin 'tpope/vim-bundler'
