@@ -5,6 +5,9 @@ alias c='clear'
 alias ai='sudo apt-get install'
 alias as='apt-cache search'
 
+# general usage
+alias ct='ctags -R .'
+
 #rails/ruby
 alias r='rails'
 alias br='bin/rails'
