@@ -1,10 +1,8 @@
 # Ignore bundler config
 /.bundle
 
-#Rails - Ignore the default SQLite database.
+# Rails - Ignore the default SQLite database.
 /db/*.sqlite3
-
-vim/init.vim
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
@@ -16,5 +14,8 @@ gems.tags
 *~
 .DS_Store
 
+# some projects don't support it
 .ruby-version
+
+# visual studio workspace
 *.code-workspace
