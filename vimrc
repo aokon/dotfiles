@@ -212,6 +212,9 @@
   " Run ack
   nmap <Leader>a <Esc>:Ack!
 
+  " use ctags via crtp
+  noremap <Leader>f :CtrlPTag<cr>
+
   " Toggle light/dark backgrounds
   " based on https://github.com/csswizardry/dotfiles/blob/b5f055ce7a189e5dc5bed49a6f9d4e052e7662eb/.vimrc#L241-L242
   nnoremap <Leader>bg :let &background = (&background == "dark" ? "light" : "dark")<CR>
