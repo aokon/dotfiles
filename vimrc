@@ -207,7 +207,7 @@
   noremap k gk
 
   " no more esc
-  inoremap <C-C> <Esc>^`
+  inoremap <C-C> <Esc>
 
   " Fast saving
   nmap <Leader>w :w<CR>
