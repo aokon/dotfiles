@@ -62,6 +62,8 @@
   " Automatically detect file types.
 	filetype plugin indent on
 
+  set re=1
+
   " how many lines of history to remember
 	set history=100
   " automatically enable mouse usage
