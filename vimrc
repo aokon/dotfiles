@@ -30,6 +30,7 @@
   " code completion
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'ervandew/supertab'
+  Plugin 'alvan/vim-closetag'
 
   " git related
   Plugin 'airblade/vim-gitgutter'
@@ -41,6 +42,8 @@
   Plugin 'vim-airline/vim-airline'
   Plugin 'craigemery/vim-autotag'
   Plugin 'w0rp/ale'
+  Plugin 'previm/previm'
+  Plugin 'tyru/open-browser.vim'
 
   " support for syntax
   Plugin 'sheerun/vim-polyglot'
@@ -243,9 +246,8 @@
     au FileType xml,html,xhtml let b:delimitMate_matchpairs = "(:),[:],{:}"
   " }
 
-	" AutoCloseTag {
-		" Make it so AutoCloseTag works for xml and xhtml files as well
-    au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
+	" CloseTag {
+    let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.js'
 	" }
 
   " ctrlp {
@@ -257,6 +259,15 @@
     let g:ctrlp_custom_ignore = {
                     \ 'dir': '\.git$\|\.hg$\|\.svn$',
                     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+  "}
+
+  " Previm {
+  	augroup PrevimSettings
+      autocmd!
+      autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+    augroup END
+
+    let g:previm_open_cmd = 'open -a Firefox'
   "}
 
   " NerdTree {
