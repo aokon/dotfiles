@@ -11,4 +11,4 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases" # Load bash_aliases
 
-[[ -s "$HOME/.shared_vars" ]] && source "$HOME/.shared_vars" # Load config variables
+[[ -s "$HOME/.projects_vars" ]] && source "$HOME/.projects_vars" # Load config variables for projects

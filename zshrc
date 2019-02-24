@@ -87,4 +87,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Add dev settings from env.sh
-[[ -s "$HOME/.env.sh" ]] && source "$HOME/.env.sh"
+[[ -s "$HOME/.devrc" ]] && source "$HOME/.devrc"
