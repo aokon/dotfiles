@@ -53,7 +53,7 @@ ZSH_THEME="lambda"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man colorize github bundler rake ruby chruby  osx zsh-syntax-highlighting)
+plugins=(git colored-man colorize github bundler rake ruby chruby asdf osx zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,5 +86,5 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Add custom settings from env.sh
-source ~/.env.sh
+# Add dev settings from env.sh
+[[ -s "$HOME/.env.sh" ]] && source "$HOME/.env.sh"
