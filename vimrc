@@ -40,6 +40,7 @@
   Plugin 'SirVer/ultisnips'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
   Plugin 'craigemery/vim-autotag'
   Plugin 'w0rp/ale'
   Plugin 'previm/previm'
@@ -223,16 +224,28 @@
   " use ctags via crtp
   noremap <Leader>f :CtrlPTag<cr>
 
+  " ALE
+  nnoremap ]r :ALENextWrap<CR>
+  nnoremap [r :ALEPreviousWrap<CR>
+  nmap <leader>at :ALEToggle<CR>
+
+
+  nnoremap <silent> <leader>s :CtrlP<CR>
+ 
+  " NERDTree
+  map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+  map <leader>e :NERDTreeFind<CR>
+  nmap <leader>nt :NERDTreeFind<CR>
+
+  " BufExlorer
+  nmap <C-B> :BufExplorer<CR>
+
   " Toggle light/dark backgrounds
   " based on https://github.com/csswizardry/dotfiles/blob/b5f055ce7a189e5dc5bed49a6f9d4e052e7662eb/.vimrc#L241-L242
   nnoremap <Leader>bg :let &background = (&background == "dark" ? "light" : "dark")<CR>
 " }
 
 " Plugins {
-  " BufferExplorer {
-      map <C-B> :BufExplorer<CR>
-  " }
-
   " YouCompleteMe {
     let g:ycm_collect_identifiers_from_tags_files = 1
     let g:ycm_collect_identifiers_from_comments_and_strings = 1
@@ -247,12 +260,11 @@
   " }
 
 	" CloseTag {
-    let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.js'
+    let g:closetag_filenames = '*.html,*.erb,*.js,*.ex,*.exs,*.ts'
 	" }
 
   " ctrlp {
     let g:ctrlp_working_path_mode = 'ra'
-    nnoremap <silent> <leader>s :CtrlP<CR>
     set wildignore+=*/tmp/*
     set wildignore+=*/bower_components/*
     set wildignore+=*/node_modules/*
@@ -271,9 +283,6 @@
   "}
 
   " NerdTree {
-    map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-    map <leader>e :NERDTreeFind<CR>
-    nmap <leader>nt :NERDTreeFind<CR>
 
     let NERDTreeShowBookmarks=1
     let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.svn', '\.bzr']
@@ -292,6 +301,11 @@
     let g:ale_lint_on_text_changed = 'never'
     let g:ale_lint_on_enter = 0
     let g:ale_completion_enabled = 0
-    let g:ale_linters = {'javascript': ['eslint', 'flow']}
+    let g:ale_linters = {
+      \  'javascript': ['eslint', 'tsserver'],
+      \  'ruby': ['rubocop', 'sorbet', 'reek'],
+      \  'elixir': ['credo', 'dialyxir']
+      \ }
   " }
 " }
+
