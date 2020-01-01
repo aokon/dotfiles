@@ -22,9 +22,10 @@ alias rdr='brk db:rollback'
 
 #ember/node
 alias e='ember'
+alias n='npm'
+alias y='yarn'
 alias ni='npm install --save-dev'
-alias bwi='bower install --save-dev'
-alias ugh='rm -rf node_modules/ bower_components/ && npm cache clean && bower cache clean && ni && bwi'
+alias ugh='rm -rf node_modules/ && npm cache clean && ni'
 
 #osx
 alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
