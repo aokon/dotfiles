@@ -27,8 +27,7 @@
   Plug 'mileszs/ack.vim'
 
   " code completion
-  Plug 'Valloric/YouCompleteMe'
-  Plug 'ervandew/supertab'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'alvan/vim-closetag'
 
   " git related
@@ -96,6 +95,7 @@
   silent execute '!mkdir -p $HOME/.vimswap'
 
   set nobackup
+  set nowritebackup
   set noswapfile
 " }
 
@@ -155,6 +155,16 @@
 	set foldenable
   " the /g flag on :s substitutions by default
 	set gdefault
+
+  set cmdheight=2
+
+  set updatetime=300
+
+  " don't give |ins-completion-menu| messages.
+  set shortmess+=c
+
+  " always show signcolumns
+  set signcolumn=yes
 " }
 
 " Formatting {
@@ -183,6 +193,9 @@
   autocmd BufNewFile,BufRead *.phtml set filetype=php
   autocmd BufNewFile,BufRead Capfile set filetype=ruby
   autocmd BufNewFile,BufRead *.es6 setfiletype javascript
+
+  " Highlight symbol under cursor on CursorHold
+  autocmd CursorHold * silent call CocActionAsync('highlight')
 " }
 
 
@@ -230,7 +243,7 @@
 
 
   nnoremap <silent> <leader>s :CtrlP<CR>
- 
+
   " NERDTree
   map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
   map <leader>e :NERDTreeFind<CR>
@@ -245,11 +258,23 @@
 " }
 
 " Plugins {
-  " YouCompleteMe {
-    let g:ycm_collect_identifiers_from_tags_files = 1
-    let g:ycm_collect_identifiers_from_comments_and_strings = 1
-    let g:ycm_min_num_identifier_candidate_chars = 2
-    let g:ycm_show_diagnostics_ui = 0
+  " CoC {
+    " Use tab for trigger completion with characters ahead and navigate.
+    " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+    " other plugin before putting this into your config.
+    inoremap <silent><expr> <TAB>
+          \ pumvisible() ? "\<C-n>" :
+          \ <SID>check_back_space() ? "\<TAB>" :
+          \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+    function! s:check_back_space() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+    " Use <c-space> to trigger completion.
+    inoremap <silent><expr> <c-space> coc#refresh()
   " }
 
   " Delimitmate {
