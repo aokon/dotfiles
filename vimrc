@@ -1,61 +1,60 @@
 " Basics {
   set nocompatible
   " buffer becomes hidden when it is abandoned
-	set hidden
+  set hidden
 " }
 
-" Setup Vundle {
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
+" Setup Plug {
+  call plug#begin('~/.vim/plugged')
 
   " vundle self-management
-  Plugin 'gmarik/vundle'
+  Plug 'gmarik/vundle'
 
   " general vim improvements
-  Plugin 'Raimondi/delimitMate'
-  Plugin 'bling/vim-bufferline'
-  Plugin 'flazz/vim-colorschemes'
-  Plugin 'godlygeek/tabular'
-  Plugin 'tpope/vim-surround'
-  Plugin 'vim-scripts/YankRing.vim'
+  Plug 'Raimondi/delimitMate'
+  Plug 'bling/vim-bufferline'
+  Plug 'flazz/vim-colorschemes'
+  Plug 'godlygeek/tabular'
+  Plug 'tpope/vim-surround'
+  Plug 'vim-scripts/YankRing.vim'
 
   " file navigation
-  Plugin 'aokon/vim-bufexplorer'
-  Plugin 'kien/ctrlp.vim'
-  Plugin 'scrooloose/nerdtree'
+  Plug 'aokon/vim-bufexplorer'
+  Plug 'kien/ctrlp.vim'
+  Plug 'scrooloose/nerdtree'
 
   " searching
-  Plugin 'mileszs/ack.vim'
+  Plug 'mileszs/ack.vim'
 
   " code completion
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'ervandew/supertab'
-  Plugin 'alvan/vim-closetag'
+  Plug 'Valloric/YouCompleteMe'
+  Plug 'ervandew/supertab'
+  Plug 'alvan/vim-closetag'
 
   " git related
-  Plugin 'airblade/vim-gitgutter'
-  Plugin 'tpope/vim-fugitive'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
 
   " better developer experience
-  Plugin 'SirVer/ultisnips'
-  Plugin 'scrooloose/nerdcommenter'
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
-  Plugin 'craigemery/vim-autotag'
-  Plugin 'w0rp/ale'
-  Plugin 'previm/previm'
-  Plugin 'tyru/open-browser.vim'
+  Plug 'SirVer/ultisnips'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'craigemery/vim-autotag'
+  Plug 'w0rp/ale'
+  Plug 'previm/previm'
+  Plug 'tyru/open-browser.vim'
 
   " support for syntax
-  Plugin 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot'
 
   " Ruby related
-  Plugin 'tpope/vim-bundler'
-  Plugin 'tpope/vim-endwise'
-  Plugin 'tpope/vim-rails'
-  Plugin 'tpope/vim-rake'
+  Plug 'tpope/vim-bundler'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-rake'
 
-  call vundle#end()
+  call plug#end()
 " }
 
 " General {
