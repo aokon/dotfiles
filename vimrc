@@ -158,7 +158,10 @@
 
   set cmdheight=2
 
-  set updatetime=300
+  set updatetime=3000
+
+  " solve issue with displaying the syntax
+  "set redrawtime=10000
 
   " don't give |ins-completion-menu| messages.
   set shortmess+=c
