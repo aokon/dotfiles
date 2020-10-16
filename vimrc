@@ -7,9 +7,6 @@
 " Setup Plug {
   call plug#begin('~/.vim/plugged')
 
-  " vundle self-management
-  Plug 'gmarik/vundle'
-
   " general vim improvements
   Plug 'Raimondi/delimitMate'
   Plug 'bling/vim-bufferline'
@@ -29,6 +26,7 @@
   " code completion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'alvan/vim-closetag'
+  Plug 'tpope/vim-endwise'
 
   " git related
   Plug 'airblade/vim-gitgutter'
@@ -48,7 +46,6 @@
 
   " Ruby related
   Plug 'tpope/vim-bundler'
-  Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-rake'
 
@@ -93,10 +90,13 @@
 " }
 
 " Vim UI {
+  set termguicolors
+  let g:gruvbox_italic=1
+
   " Assume a light background
   set background=light
   " load a colorscheme
-	color solarized
+	color gruvbox
   " highlight current line
 	set cursorline
   " display the current mode
