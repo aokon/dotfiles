@@ -1,17 +1,17 @@
-alias v='vim -c NERDTree 2> /dev/null'
-alias c='clear'
-
 #ubuntu
 alias ai='sudo apt-get install'
 alias as='apt-cache search'
 
-# general usage
+# general utils
 alias ct='ctags -R .'
+alias v='nvim -c NERDTree 2> /dev/null'
+alias c='clear'
 
 #rails/ruby
 alias r='rails'
 alias br='bin/rails'
 alias brk='bin/rake'
+alias brc='bin/rspec'
 alias b='bundle'
 alias be='b exec'
 alias bi='b install'
@@ -20,18 +20,17 @@ alias bo='b outdate'
 alias rdm='brk db:migrate'
 alias rdr='brk db:rollback'
 
-#ember/node
-alias e='ember'
+#frontend tools
 alias n='npm'
 alias y='yarn'
-alias ni='npm install --save-dev'
+alias no='n outdated'
+alias nr='n run'
 alias ugh='rm -rf node_modules/ && npm cache clean && ni'
 
-#osx
-alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-alias pg-stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-alias mysql-start='/usr/local/Cellar/mysql/5.6.17/support-files/mysql.server start'
-alias mysql-stop='/usr/local/Cellar/mysql/5.6.17/support-files/mysql.server stop'
+#docker
+alias di='docker images -a'
+alias dsp='docker system prune -a'
+alias dco='docker-compose'
 
 #git
 alias gta='git add'
