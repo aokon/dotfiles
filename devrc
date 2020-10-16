@@ -1,7 +1,7 @@
  #!/bin/zsh
 
 export USER_NAME="aokon"
-export EDITOR="vim"
+export EDITOR="nvim"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # docker

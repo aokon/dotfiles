@@ -11,19 +11,18 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
-  editor       = /usr/local/bin/vim
-
+  editor       = /usr/local/bin/nvim
   trustctime = false
 
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [merge]
-  tool = vimdiff
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  tool = nvim
+[mergetool]
+  prompt = false
+
 [push]
 	default = simple
+
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
