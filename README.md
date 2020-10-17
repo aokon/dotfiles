@@ -10,3 +10,12 @@ It contains following options:
 * ruby gems config
 * personal git config
 * personal bash_aliases
+
+## Creating vim snippet
+
+At the moment I'm using coc-snippets as a snippets engine.
+If you want to create / update custom snippets run in vim / nvim:
+
+```
+:CocCommand snippets.editSnippets
+```

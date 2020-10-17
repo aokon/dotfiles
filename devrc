@@ -4,8 +4,12 @@ export USER_NAME="aokon"
 export EDITOR="nvim"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
-# docker
+export CLICOLOR=1
 
+# add vi mode into terminal
+set -o vi
+
+# docker
 export COMPOSE_DOCKER_CLI_BUILD=1
 export DOCKER_BUILDKIT=1
 
