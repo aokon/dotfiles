@@ -83,7 +83,6 @@
 
 " Setting up the directories {
   "set backup
-
   set nobackup
   set nowritebackup
   set noswapfile
@@ -368,6 +367,7 @@
     set wildignore+=*/tmp/*
     set wildignore+=*/bower_components/*
     set wildignore+=*/node_modules/*
+    set wildignore+=*/dist/*
     let g:ctrlp_custom_ignore = {
                     \ 'dir': '\.git$\|\.hg$\|\.svn$',
                     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
