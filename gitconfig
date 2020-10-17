@@ -1,6 +1,35 @@
-[user]
-	name = Adam Okoń
-	email = adam.okon@elegantcode.pl
+[alias]
+  a = add
+  b = branch
+  bl = blame
+  br = branch
+  c = commit
+  ca = commit --amend --no-edit
+  ci = commit
+  cl = clone
+  co = checkout
+	d = diff
+	i = init
+  l = log -10 --date=human --pretty=format:'%Cred%h%Creset %s %Cgreen(%an, %ad)%Creset'
+	m = merge
+  o = overview
+  overview = log --all --no-merges --oneline -10 --date=relative --pretty=format:'%Cred%h%Creset%Cblue%d%Creset %s %Cgreen(%an, %ad)%Creset'
+  p = push
+  pf = push --force-with-lease
+  pl = pull
+	rb = rebase
+  rba = rebase --abort
+  rbc = rebase --continue
+  rbi = rebase --interactive
+  rbi2 = rebase --interactive HEAD~2
+  rbi3 = rebase --interactive HEAD~3
+  rbi5 = rebase --interactive HEAD~5
+	rbs = rebase --skip
+  recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+	st = status
+  stash-all = stash save --include-untracked
+  t = tag
+  undo = reset --soft HEAD^
 
 [color]
   diff        = auto
@@ -9,6 +38,9 @@
   interactive = auto
   ui          = auto
 
+[commit]
+  verbose = true
+
 [core]
 	excludesfile = ~/.gitignore_global
   editor       = /usr/local/bin/nvim
@@ -16,13 +48,26 @@
 
 [mergetool "nvim"]
   cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+
 [merge]
   tool = nvim
+
 [mergetool]
   prompt = false
+
+[pull]
+  # always rebase local changes on pulls
+  rebase = true
 
 [push]
 	default = simple
 
+[rerere]
+  enabled = 1
+
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
+
+[user]
+	name = Adam Okoń
+	email = adam.okon@elegantcode.pl
