@@ -34,8 +34,8 @@
 
   " better developer experience
   Plug 'scrooloose/nerdcommenter'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  "Plug 'vim-airline/vim-airline'
+  "Plug 'vim-airline/vim-airline-themes'
   Plug 'craigemery/vim-autotag'
   Plug 'w0rp/ale'
   Plug 'previm/previm'
@@ -60,17 +60,15 @@
   " Automatically detect file types.
 	filetype plugin indent on
 
-  set re=1
-
   " how many lines of history to remember
-	set history=100
+  set history=100
   " automatically enable mouse usage
-	set mouse=a
+  set mouse=a
   " don't make noise on error messages
-	set noerrorbells
+  set noerrorbells
   " don't blink
-	set novisualbell
-	set autowrite
+  set novisualbell
+  set autowrite
   set spell spelllang=en_gb
 
   if system('uname -s') == "Darwin\n"
@@ -79,11 +77,10 @@
     set clipboard=unnamedplus "Linux
   endif
 
-" }
+"" }
 
-" Setting up the directories {
-  "set backup
-  set nobackup
+"" Setting up the directories {
+  set backup
   set nowritebackup
   set noswapfile
 " }
@@ -95,58 +92,59 @@
   " Assume a light background
   set background=light
   " load a colorscheme
-	color gruvbox
+  color gruvbox
   " highlight current line
-	set cursorline
+  set cursorline
   " display the current mode
-	set showmode
+  set showmode
 
-	if has('cmdline_info')
+  if has('cmdline_info')
     " show the ruler
-		set ruler
+    set ruler
     " a ruler on steroids
-		set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
     " show partial commands in status line and
-		set showcmd
-	endif
+    set showcmd
+  endif
 
   " do not redraw while running macros (much faster) (LazyRedraw)
-	set lazyredraw
+  set lazyredraw
+
   " what to show when I hit :set list
-	set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
+  set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
 
   " make backspace work normal (indent, eol, start)
-	set backspace=indent,eol,start
+  set backspace=indent,eol,start
   " could be < 0
-	set linespace=0
+  set linespace=0
   " Line numbers on
-	set number
+  set number
   " show matching brackets/parenthesis
-	set showmatch
+  set showmatch
   " find as you type search
-	set incsearch
+  set incsearch
   " highlight search terms
-	set hlsearch
+  set hlsearch
   " windows can be 0 line high
-	set winminheight=0
+  set winminheight=0
   " case insensitive search
-	set ignorecase
+  set ignorecase
   " case sensitive when uc present
-	set smartcase
+  set smartcase
   " show list instead of just completing
-	set wildmenu
+  set wildmenu
   " command <Tab> completion, list matches, then longest common part, then all.
-	set wildmode=list:longest,full
+  set wildmode=list:longest,full
   " allow backspace and cursor keys to cross line boundaries
-	set whichwrap+=<,>,[,]
+  set whichwrap+=<,>,[,]
   " lines to scroll when cursor leaves screen
-	set scrolljump=0
+  set scrolljump=0
   " minimum lines to keep above and below cursor
-	set scrolloff=5
+  set scrolloff=5
   " auto fold code
-	set foldenable
+  set foldenable
   " the /g flag on :s substitutions by default
-	set gdefault
+  set gdefault
 
   " Give more space for displaying messages.
   set cmdheight=2
@@ -163,23 +161,29 @@
 
 " Formatting {
   " wrap long lines
-	set wrap
+  set wrap
   " indent at the same level of the previous line
-	set autoindent
+  set autoindent
   " smart autoindenting for C programs
-	set smartindent
+  set smartindent
   " use indents of 2 spaces
-	set shiftwidth=2
+  set shiftwidth=2
   " don't use tabs
-	set expandtab
-	set tabstop=2
-	set softtabstop=2
+  set expandtab
+
+  set tabstop=2
+
+  set softtabstop=2
+
   set colorcolumn=100
-	set nosmarttab
+
+  set synmaxcol=300
+
+  set nosmarttab
 
   " pastetoggle (sane indentation on pastes)
-	set pastetoggle=<F12>
-	set formatoptions+=n
+  set pastetoggle=<F12>
+  set formatoptions+=n
 
   autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=8
   autocmd BufNewFile,BufRead *.coffee set filetype=coffee
@@ -187,11 +191,6 @@
   autocmd BufNewFile,BufRead *.phtml set filetype=php
   autocmd BufNewFile,BufRead Capfile set filetype=ruby
   autocmd BufNewFile,BufRead *.es6 setfiletype javascript
-
-  " Highlight symbol under cursor on CursorHold
-  autocmd CursorHold * silent call CocActionAsync('highlight')
-" }
-
 
 " Highlight whitespaces {
   highlight ExtraWhitespace ctermbg=red guibg=red
@@ -252,16 +251,10 @@
 " }
 
 " Plugins {
-  " CoC {
+   " CoC {
     let g:coc_global_extensions = [
-    \ 'coc-json',
     \ 'coc-tsserver',
-    \ 'coc-snippets',
-    \ 'coc-elixir',
-    \ 'coc-html',
-    \  'coc-css',
-    \  'coc-sql',
-    \ 'coc-tailwindcss'
+    \ 'coc-elixir'
     \ ]
 
     " Use tab for trigger completion with characters ahead and navigate.
@@ -374,7 +367,7 @@
   "}
 
   " Previm {
-  	augroup PrevimSettings
+    augroup PrevimSettings
       autocmd!
       autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
     augroup END
