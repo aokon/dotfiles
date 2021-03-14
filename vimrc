@@ -104,6 +104,10 @@
   " display the current mode
   set showmode
 
+  hi CursorLine   cterm=NONE ctermbg=235
+  hi CursorColumn cterm=NONE ctermbg=235
+  nnoremap x :set cursorline! cursorcolumn!
+
   if has('cmdline_info')
     " show the ruler
     set ruler
@@ -233,6 +237,9 @@
 
   " Run ack
   nmap <Leader>a <Esc>:Ack!
+
+  " json beautifier
+  nnoremap <Leader>z :%!jq '.'<CR>
 
   " use ctags via crtp
   noremap <Leader>f :CtrlPTag<cr>
