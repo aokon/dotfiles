@@ -34,8 +34,8 @@
 
   " better developer experience
   Plug 'scrooloose/nerdcommenter'
-  "Plug 'vim-airline/vim-airline'
-  "Plug 'vim-airline/vim-airline-themes'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
   Plug 'craigemery/vim-autotag'
   Plug 'w0rp/ale'
   Plug 'previm/previm'
@@ -55,6 +55,11 @@
 " General {
   " syntax highlighting
 	syntax on
+  " faster Ruby syntax highlighting
+  let ruby_no_expensive=1
+
+  set synmaxcol=300
+
 	scriptencoding utf-8
   filetype off
   " Automatically detect file types.
@@ -80,9 +85,10 @@
 "" }
 
 "" Setting up the directories {
-  set backup
+  " global directory for .swp files
+  set directory=$HOME/.vim/tmp/
+  set nobackup
   set nowritebackup
-  set noswapfile
 " }
 
 " Vim UI {
@@ -190,6 +196,8 @@
   autocmd BufNewFile,BufRead *.less set filetype=less
   autocmd BufNewFile,BufRead *.phtml set filetype=php
   autocmd BufNewFile,BufRead Capfile set filetype=ruby
+  autocmd BufNewFile,BufRead *.exs set filetype=elixir
+  autocmd BufNewFile,BufRead *.lock set filetype=elixir
   autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 
 " Highlight whitespaces {
@@ -233,6 +241,7 @@
   nnoremap ]r :ALENextWrap<CR>
   nnoremap [r :ALEPreviousWrap<CR>
   nmap <leader>at :ALEToggle<CR>
+  nmap <leader>ad :ALEDetail<CR>
 
   " ControlP
   nnoremap <silent> <leader>s :CtrlP<CR>
@@ -362,7 +371,7 @@
     set wildignore+=*/node_modules/*
     set wildignore+=*/dist/*
     let g:ctrlp_custom_ignore = {
-                    \ 'dir': '\.git$\|\.hg$\|\.svn$',
+                    \ 'dir': '\.git$\|\.hg$\|\.svn$|\db$',
                     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
   "}
 
