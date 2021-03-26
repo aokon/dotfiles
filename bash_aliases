@@ -24,6 +24,10 @@ alias ba='b add'
 alias rdm='brk db:migrate'
 alias rdr='brk db:rollback'
 
+# tmux
+alias t='tmux'
+alias tmr='tmuxinator'
+
 #frontend tools
 alias n='npm'
 alias y='yarn'
