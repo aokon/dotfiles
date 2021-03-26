@@ -104,10 +104,6 @@
   " display the current mode
   set showmode
 
-  hi CursorLine   cterm=NONE ctermbg=235
-  hi CursorColumn cterm=NONE ctermbg=235
-  nnoremap x :set cursorline! cursorcolumn!
-
   if has('cmdline_info')
     " show the ruler
     set ruler
