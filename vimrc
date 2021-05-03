@@ -266,7 +266,13 @@
    " CoC {
     let g:coc_global_extensions = [
     \ 'coc-tsserver',
-    \ 'coc-elixir'
+    \ 'coc-elixir',
+    \ 'coc-tailwindcss',
+    \ 'coc-html',
+    \ 'coc-snippets',
+    \ 'coc-json',
+    \ 'coc-css',
+    \ 'coc-solargraph'
     \ ]
 
     " Use tab for trigger completion with characters ahead and navigate.
