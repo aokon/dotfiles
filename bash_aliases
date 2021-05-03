@@ -1,4 +1,4 @@
-#ubuntu
+# ubuntu
 alias ai='sudo apt-get install'
 alias as='apt-cache search'
 
@@ -24,11 +24,15 @@ alias ba='b add'
 alias rdm='brk db:migrate'
 alias rdr='brk db:rollback'
 
+# elixir
+alias m="mix"
+alias iex='iex --erl "-kernel shell_history enabled"'
+
 # tmux
 alias t='tmux'
 alias tmr='tmuxinator'
 
-#frontend tools
+# frontend tools
 alias n='npm'
 alias y='yarn'
 alias yr='y run'
