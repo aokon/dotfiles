@@ -25,11 +25,14 @@
   rbi3 = rebase --interactive HEAD~3
   rbi5 = rebase --interactive HEAD~5
 	rbs = rebase --skip
-  recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+  recent = b --format="%(committerdate:relative)%09%(refname:short)"
 	st = status
   stash-all = stash save --include-untracked
   t = tag
   undo = reset --soft HEAD^
+
+[branch]
+  sort = -committerdate
 
 [color]
   diff        = auto
