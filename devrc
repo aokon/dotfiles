@@ -1,9 +1,5 @@
 export USER_NAME="aokon"
 export EDITOR="nvim"
 
-# docker
-export COMPOSE_DOCKER_CLI_BUILD=1
-export DOCKER_BUILDKIT=1
-
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases" # Load bash_aliases
 [[ -s "$HOME/.projects_vars" ]] && source "$HOME/.projects_vars" # Load config variables for projects

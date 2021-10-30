@@ -8,6 +8,7 @@ alias v='nvim -c NERDTree 2> /dev/null'
 alias c='clear'
 alias ll='ls -al'
 alias l='ls -l'
+alias g='git'
 
 #rails/ruby
 alias r='rails'

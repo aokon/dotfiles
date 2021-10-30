@@ -2,7 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/aokon/.oh-my-zsh
+
+if [[ -n $WSL_DISTRO_NAME ]]; then
+  export ZSH=/home/aokon/.oh-my-zsh
+else
+  export ZSH=/Users/aokon/.oh-my-zsh
+fi
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 
@@ -53,7 +58,7 @@ ZSH_THEME="lambda"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man colorize github bundler rake ruby asdf osx zsh-syntax-highlighting dotenv)
+plugins=(git colored-man colorize github bundler rake ruby asdf osx zsh-syntax-highlighting dotenv zsh-asdf-direnv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -63,13 +68,6 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
