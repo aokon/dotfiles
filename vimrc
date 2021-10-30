@@ -96,7 +96,7 @@
   let g:gruvbox_italic=1
 
   " Assume a light background
-  set background=light
+  set background=dark
   " load a colorscheme
   color gruvbox
   " highlight current line
@@ -196,6 +196,8 @@
   autocmd BufNewFile,BufRead *.less set filetype=less
   autocmd BufNewFile,BufRead *.phtml set filetype=php
   autocmd BufNewFile,BufRead Capfile set filetype=ruby
+  autocmd BufNewFile,BufRead *.slim set filetype=ruby
+  autocmd BufNewFile,BufRead *.haml set filetype=ruby
   autocmd BufNewFile,BufRead *.exs set filetype=elixir
   autocmd BufNewFile,BufRead *.lock set filetype=elixir
   autocmd BufNewFile,BufRead *.es6 setfiletype javascript
@@ -267,7 +269,6 @@
     let g:coc_global_extensions = [
     \ 'coc-tsserver',
     \ 'coc-elixir',
-    \ 'coc-tailwindcss',
     \ 'coc-html',
     \ 'coc-snippets',
     \ 'coc-json',
