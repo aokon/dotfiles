@@ -13,6 +13,7 @@ gems.tags
 /coverage
 *~
 .DS_Store
+._.DS_Store
 
 # some projects don't support it
 .ruby-version
