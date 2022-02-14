@@ -74,3 +74,6 @@
 [user]
 	name = Adam Okoń
 	email = adam.okon@elegantcode.pl
+
+[includeIf "gitdir:JIT/"]
+  path = .gitconfig-jit
