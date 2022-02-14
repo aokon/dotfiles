@@ -240,7 +240,7 @@
   nnoremap <Leader>z :%!jq '.'<CR>
 
   " use ctags via crtp
-  noremap <Leader>f :CtrlPTag<cr>
+  " noremap <Leader>f :CtrlPTag<cr>
 
   " ALE
   nnoremap ]r :ALENextWrap<CR>
@@ -273,7 +273,9 @@
     \ 'coc-snippets',
     \ 'coc-json',
     \ 'coc-css',
-    \ 'coc-solargraph'
+    \ 'coc-solargraph',
+    \ 'coc-eslint',
+    \ 'coc-prettier'
     \ ]
 
     " Use tab for trigger completion with characters ahead and navigate.
@@ -331,6 +333,10 @@
     " Formatting selected code.
     xmap <leader>f  <Plug>(coc-format-selected)
     nmap <leader>f  <Plug>(coc-format-selected)
+
+    command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+    command! -nargs=0 Eslint :CocCommand eslint.lintProject
 
     " Use <C-l> for trigger snippet expand.
     imap <C-l> <Plug>(coc-snippets-expand)
