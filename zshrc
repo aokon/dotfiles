@@ -90,5 +90,10 @@ if type brew &>/dev/null; then
   compinit
 fi
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
 # Add dev settings from env.sh
 [[ -s "$HOME/.devrc" ]] && source "$HOME/.devrc"
