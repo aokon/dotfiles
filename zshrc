@@ -4,9 +4,9 @@
 # Path to your oh-my-zsh installation.
 
 if [[ -n $WSL_DISTRO_NAME ]]; then
-  export ZSH=/home/aokon/.oh-my-zsh
+  export ZSH=/home/$USER/.oh-my-zsh
 else
-  export ZSH=/Users/aokon/.oh-my-zsh
+  export ZSH=/Users/$USER/.oh-my-zsh
 fi
 
 fpath=(/usr/local/share/zsh-completions $fpath)
