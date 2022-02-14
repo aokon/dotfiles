@@ -4,7 +4,8 @@ alias as='apt-cache search'
 
 # general utils
 alias ct='ctags -R .'
-alias v='nvim -c NERDTree 2> /dev/null'
+alias v='vim -c NERDTree 2> /dev/null'
+alias nv='nvim -c NERDTree 2> /dev/null'
 alias c='clear'
 alias ll='ls -al'
 alias l='ls -l'
