@@ -200,6 +200,7 @@
   autocmd BufNewFile,BufRead *.haml set filetype=ruby
   autocmd BufNewFile,BufRead *.exs set filetype=elixir
   autocmd BufNewFile,BufRead *.lock set filetype=elixir
+  autocmd BufNewFile,BufRead *.emblem set filetype=emblem
   autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 
 " Highlight whitespaces {
