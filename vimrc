@@ -34,8 +34,8 @@
 
   " better developer experience
   Plug 'scrooloose/nerdcommenter'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  "Plug 'vim-airline/vim-airline'
+  "Plug 'vim-airline/vim-airline-themes'
   Plug 'craigemery/vim-autotag'
   Plug 'w0rp/ale'
   Plug 'previm/previm'
@@ -77,9 +77,9 @@
   set spell spelllang=en_gb
 
   if system('uname -s') == "Darwin\n"
-    set clipboard=unnamed "OSX
+    "set clipboard=unnamed "OSX
   else
-    set clipboard=unnamedplus "Linux
+    "set clipboard=unnamedplus "Linux
   endif
 
 "" }
