@@ -10,6 +10,7 @@ alias c='clear'
 alias ll='ls -al'
 alias l='ls -l'
 alias g='git'
+alias o='overmind'
 
 #rails/ruby
 alias r='rails'
