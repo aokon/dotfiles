@@ -31,7 +31,7 @@ alias m="mix"
 alias iex='iex --erl "-kernel shell_history enabled"'
 
 # tmux
-alias t='tmux'
+alias t='tmux -u'
 alias tmr='tmuxinator'
 
 # frontend tools
