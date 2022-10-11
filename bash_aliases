@@ -11,6 +11,7 @@ alias ll='ls -al'
 alias l='ls -l'
 alias g='git'
 alias o='overmind'
+alias aws='/usr/local/bin/aws'
 
 #rails/ruby
 alias r='rails'
