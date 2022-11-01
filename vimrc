@@ -34,8 +34,9 @@
 
   " better developer experience
   Plug 'scrooloose/nerdcommenter'
-  "Plug 'vim-airline/vim-airline'
-  "Plug 'vim-airline/vim-airline-themes'
+  Plug 'nvim-lualine/lualine.nvim'
+  " If you want to have icons in your statusline choose one of these
+  Plug 'kyazdani42/nvim-web-devicons'
   Plug 'craigemery/vim-autotag'
   Plug 'w0rp/ale'
   Plug 'previm/previm'
@@ -93,6 +94,7 @@
 
 " Vim UI {
   set termguicolors
+  set guifont=DroidSansMono\ Nerd\ Font\ 11
   let g:gruvbox_italic=1
 
   " Assume a light background
@@ -264,6 +266,15 @@
   " based on https://github.com/csswizardry/dotfiles/blob/b5f055ce7a189e5dc5bed49a6f9d4e052e7662eb/.vimrc#L241-L242
   nnoremap <Leader>bg :let &background = (&background == "dark" ? "light" : "dark")<CR>
 " }
+
+lua << EOF
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'gruvbox'
+  }
+}
+EOF
 
 " Plugins {
    " CoC {
