@@ -78,9 +78,9 @@
   set spell spelllang=en_gb
 
   if system('uname -s') == "Darwin\n"
-    "set clipboard=unnamed "OSX
+    set clipboard=unnamed "OSX
   else
-    "set clipboard=unnamedplus "Linux
+    set clipboard=unnamedplus "Linux
   endif
 
 "" }
