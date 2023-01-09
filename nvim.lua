@@ -47,6 +47,9 @@ require('packer').startup(function(use)
     ft = { "markdown" },
   })
 
+  -- treesitter doesn't support emblem, so syntax package is required
+  use 'yalesov/vim-emblem'
+
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
     requires = {
