@@ -379,6 +379,7 @@ local servers = {
   -- pyright = {},
   rust_analyzer = {},
   tsserver = {},
+  ruby_ls = {},
 
   sumneko_lua = {
     Lua = {
@@ -412,6 +413,12 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+
+local lspconfig = require("lspconfig")
+
+lspconfig.ruby_ls.setup({
+	cmd = { "bundle", "exec", "ruby-lsp" }
+})
 
 -- Turn on lsp status information
 require('fidget').setup()
