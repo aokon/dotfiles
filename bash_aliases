@@ -1,5 +1,8 @@
 # ubuntu
-alias ai='sudo apt-get install'
+alias ai='sudo apt install'
+alias au='sudo apt update'
+alias aug='sudo apt upgrade'
+alias alu='apt list --upgradable'
 alias as='apt-cache search'
 
 # general utils
@@ -16,7 +19,6 @@ alias aws='/usr/local/bin/aws'
 #rails/ruby
 alias r='rails'
 alias br='bin/rails'
-alias brk='bin/rake'
 alias brc='bin/rspec'
 alias b='bundle'
 alias be='b exec'
@@ -25,8 +27,8 @@ alias bu='b update'
 alias bo='b outdate'
 alias bon='b open'
 alias ba='b add'
-alias rdm='brk db:migrate'
-alias rdr='brk db:rollback'
+alias rdm='br db:migrate'
+alias rdr='br db:rollback'
 
 # elixir
 alias m="mix"
@@ -50,4 +52,4 @@ alias ugh='rm -rf node_modules/ && npm cache clean && n i'
 alias dk='docker'
 alias di='dk images -a'
 alias dsp='dk system prune -a'
-alias dco='docker-compose'
+alias dco='dk compose'
