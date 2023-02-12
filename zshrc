@@ -95,5 +95,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# add escripts path from current elixir verions
+if [ -d "$HOME/.asdf/installs/elixir/1.14.3/.mix/escripts" ] ; then
+    PATH="$HOME/.asdf/installs/elixir/1.14.3/.mix/escripts:$PATH"
+fi
+
 # Add dev settings from env.sh
 [[ -s "$HOME/.devrc" ]] && source "$HOME/.devrc"
