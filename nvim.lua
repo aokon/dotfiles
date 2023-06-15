@@ -222,9 +222,12 @@ require('gitsigns').setup {
 require('telescope').setup {
   defaults = {
     mappings = {
+      n = {
+        ['<c-d>'] = require('telescope.actions').delete_buffer
+      }, -- n
       i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
+        ["<C-h>"] = "which_key",
+        ['<c-d>'] = require('telescope.actions').delete_buffer
       },
     },
   },
@@ -262,6 +265,8 @@ vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true })
 
 -- NERDTree
 vim.keymap.set('n', '<leader>nt', ':NERDTreeToggle<CR>', { noremap = true })
+
+vim.keymap.set('n', '<leader>ft', ':LspZeroFormat', { noremap = true })
 
 -- Toggle theme
 vim.keymap.set('n', '<leader>bg', ':let &background = (&background == "dark" ? "light" : "dark")<CR>', { noremap = true })
@@ -331,6 +336,7 @@ require('nvim-treesitter.configs').setup {
 
 --- Setup mason so it can manage external tooling
 require('mason').setup()
+require("mason-lspconfig").setup()
 
 --- Setup LSP
 local lsp = require('lsp-zero')
@@ -384,9 +390,12 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
-    {name = 'path'},
-    {name = 'nvim_lsp', keyword_length = 3},
-    {name = 'buffer', keyword_length = 3},
-    {name = 'luasnip', keyword_length = 2},
+    { name = 'nvim_lsp'},
+    { name = 'path'},
+    { name = 'luasnip'},
+    { name = 'buffer'},
+    { name = 'treesitter' },
+    { name = 'tags' },
+    { name = 'rg' },
   },
 }
