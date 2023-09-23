@@ -275,7 +275,7 @@ vim.keymap.set('n', '<leader>bg', ':let &background = (&background == "dark" ? "
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'javascript', 'ruby', 'lua', 'elixir', 'rust', 'typescript', 'help', 'vim' },
+  ensure_installed = { 'javascript', 'ruby', 'lua', 'elixir', 'rust', 'typescript', 'vimdoc', 'vim', 'go', 'zig' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
