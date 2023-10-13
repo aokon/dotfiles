@@ -144,7 +144,7 @@ vim.o.updatetime=100
 -- clipboard
 vim.cmd([[
   if system('uname -s') == "Darwin\n"
-    set clipboard=annamed "OSX
+    set clipboard=unnamed "OSX
   else
     set clipboard=unnamedplus "Linux
   endif
