@@ -334,27 +334,24 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
---- Setup mason so it can manage external tooling
-require('mason').setup()
-require("mason-lspconfig").setup()
-
 --- Setup LSP
-local lsp = require('lsp-zero')
-lsp.preset('recommended')
+local lsp_zero = require('lsp-zero')
+lsp_zero.preset('recommended')
 
-lsp.on_attach(function(client, bufnr)
+lsp_zero.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr}
   local bind = vim.keymap.set
+  lsp_zero.default_keymaps({buffer = bufnr})
 
   bind('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
   bind('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 end)
 
-lsp.setup()
+local cmp_action = lsp_zero.cmp_action()
 
 -- nvim-cmp setup
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
+local cmp = require('cmp')
+local luasnip = require('luasnip')
 
 cmp.setup {
   snippet = {
@@ -392,10 +389,32 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp'},
     { name = 'path'},
-    { name = 'luasnip'},
     { name = 'buffer'},
+    { name = 'luasnip'},
     { name = 'treesitter' },
     { name = 'tags' },
     { name = 'rg' },
   },
 }
+
+
+--- Setup mason so it can manage external tooling
+require('mason').setup()
+require("mason-lspconfig").setup({
+ ensure_installed = {'tsserver', 'rust_analyzer'},
+  handlers = {
+    lsp_zero.default_setup,
+  }
+})
+
+lsp_zero.setup_nvim_cmp({
+  mapping = cmp.mapping.preset.insert({
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+  })
+})
+
+lsp_zero.setup()
