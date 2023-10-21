@@ -95,6 +95,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if type brew &>/dev/null; then
+    PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+fi
+
 # add escripts path from current elixir verions
 if [ -d "$HOME/.asdf/installs/elixir/1.14.3/.mix/escripts" ] ; then
     PATH="$HOME/.asdf/installs/elixir/1.14.3/.mix/escripts:$PATH"
