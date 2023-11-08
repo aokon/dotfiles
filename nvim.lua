@@ -11,18 +11,6 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
-  use { -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    requires = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-
-      -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
-    },
-  }
-
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v1.x',
@@ -37,8 +25,14 @@ require('packer').startup(function(use)
       {'hrsh7th/cmp-nvim-lsp'},     -- Required
       {'hrsh7th/cmp-buffer'},       -- Optional
       {'hrsh7th/cmp-path'},         -- Optional
+      {'hrsh7th/cmp-nvim-lsp-signature-help'},
+      {'hrsh7th/cmp-vsnip'},
+      {'hrsh7th/vim-vsnip'},
       {'saadparwaiz1/cmp_luasnip'}, -- Optional
       {'hrsh7th/cmp-nvim-lua'},     -- Optional
+
+      -- Useful status updates for LSP
+      'j-hui/fidget.nvim',
 
       -- Snippets
       {'L3MON4D3/LuaSnip'},             -- Required
@@ -58,7 +52,6 @@ require('packer').startup(function(use)
   use 'scrooloose/nerdtree'
   -- make comments
   use 'scrooloose/nerdcommenter'
-  use 'tpope/vim-endwise'
 
   use({
     "iamcco/markdown-preview.nvim",
@@ -161,6 +154,14 @@ vim.cmd([[
 
 -- always show signcolumns
 vim.o.signcolumn = 'yes'
+vim.cmd([[
+  autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])
+
+--Set completeopt to have a better completion experience
+vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
+vim.opt.shortmess = vim.opt.shortmess + { c = true}
+vim.api.nvim_set_option('updatetime', 300) 
 
 -- [[Colorscheme]]
 vim.o.termguicolors = true
@@ -389,13 +390,31 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
-    { name = 'nvim_lsp'},
     { name = 'path'},
-    { name = 'buffer'},
-    { name = 'luasnip'},
-    { name = 'treesitter' },
-    { name = 'tags' },
-    { name = 'rg' },
+    { name = 'nvim_lsp', keyword_length = 3 },
+    { name = 'nvim_lsp_signature_help' },
+    { name = 'nvim_lua', keyword_length = 2 },
+    { name = 'buffer', keyword_length = 2 },
+    { name = 'luasnip', keyword_length = 2 },
+    { name = 'vsnip', keyword_length = 2 },
+    { name = 'calc'},
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+  formatting = {
+    fields = {'menu', 'abbr', 'kind'},
+    format = function(entry, item)
+      local menu_icon ={
+        nvim_lsp = 'λ',
+        vsnip = '⋗',
+        buffer = 'Ω',
+        path = '🖫',
+      }
+      item.menu = menu_icon[entry.source.name]
+      return item
+    end,
   },
 }
 
