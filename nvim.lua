@@ -13,7 +13,7 @@ require('packer').startup(function(use)
 
   use {
     'VonHeikemen/lsp-zero.nvim',
-    branch = 'v1.x',
+    branch = 'v3.x',
     requires = {
       -- LSP Support
       {'neovim/nvim-lspconfig'},             -- Required
@@ -269,8 +269,6 @@ vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true })
 -- NERDTree
 vim.keymap.set('n', '<leader>nt', ':NERDTreeToggle<CR>', { noremap = true })
 
-vim.keymap.set('n', '<leader>ft', ':LspZeroFormat', { noremap = true })
-
 -- Toggle theme
 vim.keymap.set('n', '<leader>bg', ':let &background = (&background == "dark" ? "light" : "dark")<CR>', { noremap = true })
 
@@ -363,8 +361,6 @@ lsp_zero.format_on_save({
   }
 })
 
-lsp_zero.setup()
-
 local cmp_action = lsp_zero.cmp_action()
 
 -- nvim-cmp setup
@@ -389,13 +385,31 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert({
     ['<C-f>'] = cmp_action.luasnip_jump_forward(),
     ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
   }),
   sources = {
     { name = 'path'},
-    { name = 'nvim_lsp', keyword_length = 3 },
+    { name = 'nvim_lsp', keyword_length = 2 },
     { name = 'nvim_lsp_signature_help' },
-    { name = 'nvim_lua', keyword_length = 2 },
     { name = 'buffer', keyword_length = 2 },
+    { name = 'nvim_lua', keyword_length = 2 },
     { name = 'luasnip', keyword_length = 2 },
     { name = 'vsnip', keyword_length = 2 },
     { name = 'calc'},
