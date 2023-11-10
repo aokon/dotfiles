@@ -11,34 +11,31 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
+  -- LSP Support
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
-    requires = {
-      -- LSP Support
-      {'neovim/nvim-lspconfig'},             -- Required
-      {'williamboman/mason.nvim'},           -- Optional
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
-
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},         -- Required
-      {'hrsh7th/cmp-nvim-lsp'},     -- Required
-      {'hrsh7th/cmp-buffer'},       -- Optional
-      {'hrsh7th/cmp-path'},         -- Optional
-      {'hrsh7th/cmp-nvim-lsp-signature-help'},
-      {'hrsh7th/cmp-vsnip'},
-      {'hrsh7th/vim-vsnip'},
-      {'saadparwaiz1/cmp_luasnip'}, -- Optional
-      {'hrsh7th/cmp-nvim-lua'},     -- Optional
-
-      -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
-
-      -- Snippets
-      {'L3MON4D3/LuaSnip'},             -- Required
-      {'rafamadriz/friendly-snippets'}, -- Optional
-    }
   }
+
+  use {'neovim/nvim-lspconfig'}             -- Required
+  use {'williamboman/mason.nvim'}           -- Optional
+  use {'williamboman/mason-lspconfig.nvim'} -- Optional
+
+  -- Autocompletion
+  use {'hrsh7th/nvim-cmp'}         -- Required
+  use {'hrsh7th/cmp-nvim-lsp'}     -- Required
+  use {'hrsh7th/cmp-buffer'}       -- Optional
+  use {'hrsh7th/cmp-path'}         -- Optional
+  use {'hrsh7th/cmp-nvim-lsp-signature-help'}
+  use {'saadparwaiz1/cmp_luasnip'} -- Optional
+  use {'hrsh7th/cmp-nvim-lua'}     -- Optional
+
+  -- Useful status updates for LSP
+  use 'j-hui/fidget.nvim'
+
+  -- Snippets
+  use {'L3MON4D3/LuaSnip'}             -- Required
+  use {'rafamadriz/friendly-snippets'} -- Optional
 
   -- General UI improvements
 
@@ -361,11 +358,11 @@ lsp_zero.format_on_save({
   }
 })
 
-local cmp_action = lsp_zero.cmp_action()
-
 -- nvim-cmp setup
 local cmp = require('cmp')
 local luasnip = require('luasnip')
+
+require('luasnip.loaders.from_vscode').lazy_load()
 
 --- Setup mason so it can manage external tooling
 require('mason').setup()
@@ -373,6 +370,10 @@ require("mason-lspconfig").setup({
   ensure_installed = {'tsserver', 'rust_analyzer', 'ruby_ls', 'standardrb'},
   handlers = {
     lsp_zero.default_setup,
+    lua_ls = function()
+      local lua_opts = lsp_zero.nvim_lua_ls()
+      require('lspconfig').lua_ls.setup(lua_opts)
+    end
   },
 })
 
@@ -383,8 +384,6 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -403,17 +402,23 @@ cmp.setup {
         fallback()
       end
     end, { 'i', 's' }),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-3),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<CR>"] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    },
   }),
-  sources = {
-    { name = 'path'},
-    { name = 'nvim_lsp', keyword_length = 2 },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
     { name = 'nvim_lsp_signature_help' },
-    { name = 'buffer', keyword_length = 2 },
-    { name = 'nvim_lua', keyword_length = 2 },
-    { name = 'luasnip', keyword_length = 2 },
-    { name = 'vsnip', keyword_length = 2 },
-    { name = 'calc'},
-  },
+  }, {
+    { name = 'path' },
+    { name = 'buffer' },
+  }),
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
