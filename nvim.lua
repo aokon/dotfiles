@@ -342,13 +342,28 @@ local lsp_zero = require('lsp-zero')
 lsp_zero.preset('recommended')
 
 lsp_zero.on_attach(function(client, bufnr)
+  lsp_zero.default_keymaps({buffer = bufnr})
+
   local opts = {buffer = bufnr}
   local bind = vim.keymap.set
-  lsp_zero.default_keymaps({buffer = bufnr})
 
   bind('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
   bind('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 end)
+
+lsp_zero.format_on_save({
+  format_opts = {
+    async = true,
+    timeout_ms = 10000,
+  },
+  servers = {
+    ['rust_analyzer'] = {'rust'},
+    ['tsserver'] = {'javascript', 'typescript'},
+    ['standardrb'] = {'ruby'}
+  }
+})
+
+lsp_zero.setup()
 
 local cmp_action = lsp_zero.cmp_action()
 
@@ -356,39 +371,25 @@ local cmp_action = lsp_zero.cmp_action()
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
+--- Setup mason so it can manage external tooling
+require('mason').setup()
+require("mason-lspconfig").setup({
+  ensure_installed = {'tsserver', 'rust_analyzer', 'ruby_ls', 'standardrb'},
+  handlers = {
+    lsp_zero.default_setup,
+  },
+})
+
 cmp.setup {
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
   },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+  }),
   sources = {
     { name = 'path'},
     { name = 'nvim_lsp', keyword_length = 3 },
@@ -408,7 +409,7 @@ cmp.setup {
     format = function(entry, item)
       local menu_icon ={
         nvim_lsp = 'λ',
-        vsnip = '⋗',
+        luasnip = '⋗',
         buffer = 'Ω',
         path = '🖫',
       }
@@ -417,25 +418,3 @@ cmp.setup {
     end,
   },
 }
-
-
---- Setup mason so it can manage external tooling
-require('mason').setup()
-require("mason-lspconfig").setup({
- ensure_installed = {'tsserver', 'rust_analyzer'},
-  handlers = {
-    lsp_zero.default_setup,
-  }
-})
-
-lsp_zero.setup_nvim_cmp({
-  mapping = cmp.mapping.preset.insert({
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-  })
-})
-
-lsp_zero.setup()
