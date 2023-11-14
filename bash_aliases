@@ -53,3 +53,6 @@ alias dk='docker'
 alias di='dk images -a'
 alias dsp='dk system prune -a'
 alias dco='dk compose'
+
+alias cma='colima'
+alias cst='cma start --vm-type vz --mount-type virtiofs --memory 4'
