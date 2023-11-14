@@ -46,7 +46,7 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
-  editor       = /usr/bin/nvim
+  editor       = $HOME/.asdf/shims/nvim
   trustctime = false
 
 [mergetool "nvim"]
