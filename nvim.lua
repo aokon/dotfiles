@@ -151,14 +151,11 @@ vim.cmd([[
 
 -- always show signcolumns
 vim.o.signcolumn = 'yes'
-vim.cmd([[
-  autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-]])
 
 --Set completeopt to have a better completion experience
 vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
 vim.opt.shortmess = vim.opt.shortmess + { c = true}
-vim.api.nvim_set_option('updatetime', 300) 
+vim.api.nvim_set_option('updatetime', 300)
 
 -- [[Colorscheme]]
 vim.o.termguicolors = true
@@ -413,11 +410,13 @@ cmp.setup {
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
     { name = 'nvim_lsp_signature_help' },
-  }, {
+    { name = 'luasnip' },
+    { name = 'nvim_lua'},
     { name = 'path' },
     { name = 'buffer' },
+    { name = 'treesitter' },
+    { name = 'calc'}
   }),
   window = {
     completion = cmp.config.window.bordered(),
