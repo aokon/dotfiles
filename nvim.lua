@@ -50,17 +50,6 @@ require('packer').startup(function(use)
   -- make comments
   use 'scrooloose/nerdcommenter'
 
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    setup = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-      vim.g.mkdp_open_to_the_world = 1
-      vim.g.mkdp_browser = 'firefox'
-    end,
-    ft = { "markdown" },
-  })
-
   -- treesitter doesn't support emblem, so syntax package is required
   use 'yalesov/vim-emblem'
 
@@ -270,7 +259,7 @@ vim.keymap.set('n', '<leader>bg', ':let &background = (&background == "dark" ? "
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'javascript', 'ruby', 'lua', 'elixir', 'rust', 'typescript', 'vimdoc', 'vim', 'go', 'zig' },
+  ensure_installed = { 'javascript', 'ruby', 'lua', 'elixir', 'rust', 'typescript', 'vimdoc', 'vim', 'go', 'zig', 'kotlin' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -351,9 +340,12 @@ lsp_zero.format_on_save({
   servers = {
     ['rust_analyzer'] = {'rust'},
     ['tsserver'] = {'javascript', 'typescript'},
-    ['standardrb'] = {'ruby'}
+    ['standardrb'] = {'ruby'},
+    ['ktlint'] = {'kotlin'}
   }
 })
+
+lsp_zero.setup()
 
 -- nvim-cmp setup
 local cmp = require('cmp')
@@ -374,31 +366,17 @@ require("mason-lspconfig").setup({
   },
 })
 
-cmp.setup {
+local cmp_action = require('lsp-zero').cmp_action()
+
+cmp.setup({
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
+    ['<Tab>'] = cmp_action.luasnip_supertab(),
+    ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-3),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
@@ -408,16 +386,24 @@ cmp.setup {
       select = true,
     },
   }),
-  sources = cmp.config.sources({
+  sources = {
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
-    { name = 'luasnip' },
+    { name = 'luasnip', keyword_length = 2 },
+    {
+      name = 'buffer',
+      keyword_length = 3,
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end
+      }
+    },
     { name = 'nvim_lua'},
     { name = 'path' },
-    { name = 'buffer' },
     { name = 'treesitter' },
     { name = 'calc'}
-  }),
+  },
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
@@ -426,13 +412,13 @@ cmp.setup {
     fields = {'menu', 'abbr', 'kind'},
     format = function(entry, item)
       local menu_icon ={
-        nvim_lsp = 'λ',
-        luasnip = '⋗',
-        buffer = 'Ω',
-        path = '🖫',
+        nvim_lsp = '[LSP]',
+        luasnip = '[Snip]',
+        buffer = '[Buffer]',
+        path = '[Path]',
       }
       item.menu = menu_icon[entry.source.name]
       return item
     end,
   },
-}
+})
