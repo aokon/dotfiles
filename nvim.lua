@@ -37,6 +37,9 @@ require('packer').startup(function(use)
   use {'L3MON4D3/LuaSnip'}             -- Required
   use {'rafamadriz/friendly-snippets'} -- Optional
 
+  -- Debug utils
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
   -- General UI improvements
 
   -- colorschemes repository
@@ -353,12 +356,13 @@ local luasnip = require('luasnip')
 
 require('luasnip.loaders.from_vscode').lazy_load()
 
---- Setup mason so it can manage external tooling
+----- Setup mason so it can manage external tooling
 require('mason').setup()
 require("mason-lspconfig").setup({
-  ensure_installed = {'tsserver', 'rust_analyzer', 'ruby_ls', 'standardrb'},
+  ensure_installed = {'tsserver', 'rust_analyzer', 'ruby_ls', 'standardrb', 'jdtls'},
   handlers = {
     lsp_zero.default_setup,
+    jdtls = lsp_zero.noop,
     lua_ls = function()
       local lua_opts = lsp_zero.nvim_lua_ls()
       require('lspconfig').lua_ls.setup(lua_opts)
@@ -422,3 +426,6 @@ cmp.setup({
     end,
   },
 })
+
+-- Debug utils
+require("dapui").setup()
