@@ -328,11 +328,19 @@ lsp_zero.preset('recommended')
 lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
 
-  local opts = {buffer = bufnr}
+  local opts = {buffer = bufnr, remap = false}
   local bind = vim.keymap.set
 
-  bind('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-  bind('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+  bind("n", "gd", function() vim.lsp.buf.definition() end, opts)
+  bind("n", "K", function() vim.lsp.buf.hover() end, opts)
+  bind("n", "<leader>ws", function() vim.lsp.buf.workspace_symbol() end, opts)
+  bind("n", "<leader>d", function() vim.diagnostic.open_float() end, opts)
+  bind("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+  bind("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+  bind("n", "<leader>ra", function() vim.lsp.buf.code_action() end, opts)
+  bind("n", "<leader>rr", function() vim.lsp.buf.references() end, opts)
+  bind("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+  bind("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
 lsp_zero.format_on_save({
