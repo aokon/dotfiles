@@ -56,6 +56,19 @@ require('packer').startup(function(use)
   -- treesitter doesn't support emblem, so syntax package is required
   use 'yalesov/vim-emblem'
 
+  use {
+  "nvim-neotest/neotest",
+  requires = {
+    'vim-test/vim-test',
+    'nvim-lua/plenary.nvim',
+    'antoinemadec/FixCursorHold.nvim',
+    'olimorris/neotest-rspec',
+    'zidhuss/neotest-minitest',
+    'jfpedroza/neotest-elixir',
+    'weilbith/neotest-gradle'
+  }
+}
+
   use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     run = function()
@@ -258,6 +271,13 @@ vim.keymap.set('n', '<leader>nt', ':NERDTreeToggle<CR>', { noremap = true })
 -- Toggle theme
 vim.keymap.set('n', '<leader>bg', ':let &background = (&background == "dark" ? "light" : "dark")<CR>', { noremap = true })
 
+-- vim-test
+vim.keymap.set('n', '<leader>t', ':TestNearest<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>tf', ':TestFile<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>ta', ':TestSuite<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>tl', ':TestLast<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>tg', ':TestVisit<CR>', { noremap = true })
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
@@ -437,3 +457,12 @@ cmp.setup({
 
 -- Debug utils
 require("dapui").setup()
+
+-- neotest
+require("neotest").setup({
+  adapters = {
+    require("neotest-rspec")({
+      dap = { justMyCode = false },
+    }),
+  },
+})
