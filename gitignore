@@ -21,3 +21,4 @@ gems.tags
 # visual studio workspace
 *.code-workspace
 .vscode
+/.tool-versions
