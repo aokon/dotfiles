@@ -57,17 +57,17 @@ require('packer').startup(function(use)
   use 'yalesov/vim-emblem'
 
   use {
-  "nvim-neotest/neotest",
-  requires = {
-    'vim-test/vim-test',
-    'nvim-lua/plenary.nvim',
-    'antoinemadec/FixCursorHold.nvim',
-    'olimorris/neotest-rspec',
-    'zidhuss/neotest-minitest',
-    'jfpedroza/neotest-elixir',
-    'weilbith/neotest-gradle'
+    "nvim-neotest/neotest",
+    requires = {
+      'vim-test/vim-test',
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      'olimorris/neotest-rspec',
+      'zidhuss/neotest-minitest',
+      'jfpedroza/neotest-elixir',
+      'weilbith/neotest-gradle'
+    }
   }
-}
 
   use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -85,6 +85,13 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'lewis6991/gitsigns.nvim'
 
+  use {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup {}
+    end
+  }
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
