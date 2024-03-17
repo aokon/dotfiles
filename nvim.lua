@@ -389,10 +389,15 @@ require('luasnip.loaders.from_vscode').lazy_load()
 ----- Setup mason so it can manage external tooling
 require('mason').setup()
 require("mason-lspconfig").setup({
-  ensure_installed = {'tsserver', 'rust_analyzer', 'ruby_ls', 'standardrb', 'jdtls'},
+  ensure_installed = {'tsserver', 'rust_analyzer', 'ruby_ls', 'standardrb', 'jdtls', 'html'},
   handlers = {
     lsp_zero.default_setup,
     jdtls = lsp_zero.noop,
+    html = function()
+      require('lspconfig').html.setup({
+        filetypes = {'html', 'erb', 'html-eex', 'eruby'},
+      })
+    end,
     lua_ls = function()
       local lua_opts = lsp_zero.nvim_lua_ls()
       require('lspconfig').lua_ls.setup(lua_opts)
