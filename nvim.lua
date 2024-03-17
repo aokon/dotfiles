@@ -196,6 +196,8 @@ vim.cmd([[
   autocmd BufWinLeave * call clearmatches()
 ]])
 
+vim.cmd([[autocmd FileType ruby setlocal indentkeys-=.]])
+
 vim.cmd [[let g:python3_host_prog = "$HOME/.asdf/shims/python3"]]
 
 -- Set lualine as statusline
