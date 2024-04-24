@@ -38,7 +38,7 @@ require('packer').startup(function(use)
   use {'rafamadriz/friendly-snippets'} -- Optional
 
   -- Debug utils
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
 
   -- General UI improvements
 
@@ -396,7 +396,7 @@ require('luasnip.loaders.from_vscode').lazy_load()
 ----- Setup mason so it can manage external tooling
 require('mason').setup()
 require("mason-lspconfig").setup({
-  ensure_installed = {'tsserver', 'rust_analyzer', 'ruby_ls', 'standardrb', 'jdtls', 'html'},
+  ensure_installed = {'tsserver', 'rust_analyzer', 'ruby_lsp', 'standardrb', 'jdtls', 'html'},
   handlers = {
     lsp_zero.default_setup,
     jdtls = lsp_zero.noop,
