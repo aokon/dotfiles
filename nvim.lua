@@ -15,33 +15,30 @@ require('packer').startup(function(use)
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
+    requires = {
+      {'neovim/nvim-lspconfig'},             -- Required
+      {'williamboman/mason.nvim'},           -- Optional
+      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+      {'hrsh7th/nvim-cmp'},         -- Required
+      {'hrsh7th/cmp-nvim-lsp'},     -- Required
+      {'hrsh7th/cmp-buffer'},       -- Optional
+      {'hrsh7th/cmp-path'},         -- Optional
+      {'hrsh7th/cmp-nvim-lsp-signature-help'},
+      {'saadparwaiz1/cmp_luasnip'}, -- Optional
+      {'hrsh7th/cmp-nvim-lua'},     -- Optional
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},             -- Required
+      {'rafamadriz/friendly-snippets'} -- Optional
+    }
   }
-
-  use {'neovim/nvim-lspconfig'}             -- Required
-  use {'williamboman/mason.nvim'}           -- Optional
-  use {'williamboman/mason-lspconfig.nvim'} -- Optional
-
-  -- Autocompletion
-  use {'hrsh7th/nvim-cmp'}         -- Required
-  use {'hrsh7th/cmp-nvim-lsp'}     -- Required
-  use {'hrsh7th/cmp-buffer'}       -- Optional
-  use {'hrsh7th/cmp-path'}         -- Optional
-  use {'hrsh7th/cmp-nvim-lsp-signature-help'}
-  use {'saadparwaiz1/cmp_luasnip'} -- Optional
-  use {'hrsh7th/cmp-nvim-lua'}     -- Optional
 
   -- Useful status updates for LSP
   use 'j-hui/fidget.nvim'
-
-  -- Snippets
-  use {'L3MON4D3/LuaSnip'}             -- Required
-  use {'rafamadriz/friendly-snippets'} -- Optional
 
   -- Debug utils
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
 
   -- General UI improvements
-
   -- colorschemes repository
   use 'flazz/vim-colorschemes'
   -- Fancier statusline
@@ -91,6 +88,14 @@ require('packer').startup(function(use)
     config = function()
       require("nvim-autopairs").setup {}
     end
+  }
+
+  use {
+    "olexsmir/gopher.nvim",
+    requires = { -- dependencies
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
   }
 
   -- Fuzzy Finder (files, lsp, etc)
@@ -381,7 +386,8 @@ lsp_zero.format_on_save({
     ['rust_analyzer'] = {'rust'},
     ['tsserver'] = {'javascript', 'typescript'},
     ['standardrb'] = {'ruby'},
-    ['ktlint'] = {'kotlin'}
+    ['ktlint'] = {'kotlin'},
+    ['gopls'] = {'go', 'gomod', 'gotpml', 'gowork'}
   }
 })
 
@@ -393,13 +399,17 @@ local luasnip = require('luasnip')
 
 require('luasnip.loaders.from_vscode').lazy_load()
 
+local util = require("lspconfig/util")
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 ----- Setup mason so it can manage external tooling
 require('mason').setup()
 require("mason-lspconfig").setup({
-  ensure_installed = {'tsserver', 'rust_analyzer', 'ruby_lsp', 'standardrb', 'jdtls', 'html'},
+  ensure_installed = {'tsserver', 'rust_analyzer', 'ruby_lsp', 'standardrb', 'html', 'gopls'},
   handlers = {
-    lsp_zero.default_setup,
-    jdtls = lsp_zero.noop,
+    function(server_name)
+      require('lspconfig')[server_name].setup({})
+    end,
     html = function()
       require('lspconfig').html.setup({
         filetypes = {'html', 'erb', 'html-eex', 'eruby'},
@@ -408,6 +418,23 @@ require("mason-lspconfig").setup({
     lua_ls = function()
       local lua_opts = lsp_zero.nvim_lua_ls()
       require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+    gopls = function()
+      require('lspconfig').gopls.setup({
+        capabilities = lsp_capabilities,
+        filetypes = {'go', 'gomod', 'gotpml', 'gowork'},
+        cmd = {"gopls"},
+        root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+        settings = {
+          gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = {
+              unusedparams = true
+            }
+          }
+        }
+      })
     end
   },
 })
@@ -480,3 +507,13 @@ require("neotest").setup({
     }),
   },
 })
+
+require("gopher").setup {
+  commands = {
+    go = "go",
+    gomodifytags = "gomodifytags",
+    gotests = "~/go/bin/gotests", -- also you can set custom command path
+    impl = "impl",
+    iferr = "iferr",
+  },
+}
