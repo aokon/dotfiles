@@ -1,6 +1,10 @@
 export USER_NAME="aokon"
 export EDITOR="nvim"
 
+export GOPATH=$(asdf where golang)/packages
+export GOROOT=$(asdf where golang)/go
+export PATH="${PATH}:$(go env GOPATH)/bin"
+
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases" # Load bash_aliases
 [[ -s "$HOME/.projects_vars" ]] && source "$HOME/.projects_vars" # Load config variables for projects
 
