@@ -210,6 +210,8 @@ vim.cmd([[
 
 vim.cmd([[autocmd FileType ruby setlocal indentkeys-=.]])
 
+vim.cmd([[autocmd FileType go setlocal shiftwidth=4 softtabstop=4 expandtab]])
+
 vim.cmd [[let g:python3_host_prog = "$HOME/.asdf/shims/python3"]]
 
 -- Set lualine as statusline
