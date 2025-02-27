@@ -104,8 +104,9 @@ if [ -d "$HOME/.asdf/installs/elixir/1.14.3/.mix/escripts" ] ; then
     PATH="$HOME/.asdf/installs/elixir/1.14.3/.mix/escripts:$PATH"
 fi
 
-PATH="$HOME/.asdf/bin:$PATH"
-PATH="$HOME/.asdf/shims:$PATH"
+export ASDF_DATA_DIR="$HOME/.asdf"
+
+PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 # Add dev settings from env.sh
 [[ -s "$HOME/.devrc" ]] && source "$HOME/.devrc"
