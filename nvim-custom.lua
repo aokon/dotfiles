@@ -36,7 +36,12 @@ require('packer').startup(function(use)
   use 'j-hui/fidget.nvim'
 
   -- Debug utils
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
+  use { "rcarriga/nvim-dap-ui", requires = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
+      "leoluz/nvim-dap-go"
+    }
+  }
 
   -- General UI improvements
   -- colorschemes repository
@@ -172,7 +177,6 @@ vim.o.signcolumn = 'yes'
 --Set completeopt to have a better completion experience
 vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
 vim.opt.shortmess = vim.opt.shortmess + { c = true}
-vim.api.nvim_set_option('updatetime', 300)
 
 -- [[Colorscheme]]
 vim.o.termguicolors = true
@@ -254,46 +258,6 @@ require('telescope').setup {
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
--- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer]' })
-
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-
-
-vim.keymap.set('n', 'j', 'gj', { noremap = true })
-vim.keymap.set('n', 'k', 'gk', { noremap = true })
-
--- No more esc
-vim.keymap.set('n', '<C-C>', '<Esc>', { noremap = true })
-
--- Fast saving
-vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true })
-
--- NERDTree
-vim.keymap.set('n', '<leader>nt', ':NERDTreeToggle<CR>', { noremap = true })
-
--- Toggle theme
-vim.keymap.set('n', '<leader>bg', ':let &background = (&background == "dark" ? "light" : "dark")<CR>', { noremap = true })
-
--- vim-test
-vim.keymap.set('n', '<leader>t', ':TestNearest<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>tf', ':TestFile<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>ta', ':TestSuite<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>tl', ':TestLast<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>tg', ':TestVisit<CR>', { noremap = true })
-
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
@@ -361,7 +325,7 @@ require('nvim-treesitter.configs').setup {
 local lsp_zero = require('lsp-zero')
 lsp_zero.preset('recommended')
 
-lsp_zero.on_attach(function(client, bufnr)
+lsp_zero.on_attach(function(_, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
 
   local opts = {buffer = bufnr, remap = false}
@@ -407,7 +371,7 @@ local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 ----- Setup mason so it can manage external tooling
 require('mason').setup()
 require("mason-lspconfig").setup({
-  ensure_installed = {'tsserver', 'rust_analyzer', 'ruby_lsp', 'standardrb', 'html', 'gopls'},
+  ensure_installed = {'rust_analyzer', 'ruby_lsp', 'standardrb', 'html', 'gopls'},
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({})
@@ -499,7 +463,67 @@ cmp.setup({
 })
 
 -- Debug utils
-require("dapui").setup()
+local dap, dapui = require('dap'), require('dapui')
+local dapgo = require('dap-go')
+dapui.setup()
+dapgo.setup()
+dap.listeners.before.attach.dapui_config = function()
+ dapui.open()
+end
+dap.listeners.before.launch.dapui_config = function()
+ dapui.open()
+end
+
+dap.adapters.delve = {
+  type = 'server',
+  port = '${port}',
+  executable = {
+    command = 'dlv',
+    args = {'dap', '-l', '127.0.0.1:${port}'},
+  }
+}
+
+dap.configurations.go = {
+  {
+    type = "delve",
+    name = "Debug",
+    request = "launch",
+    program = "${file}"
+  },
+  {
+    type = "delve",
+    name = "Debug test", -- configuration for debugging test files
+    request = "launch",
+    mode = "test",
+    program = "${file}"
+  },
+  -- works with go.mod packages and sub packages
+  {
+    type = "delve",
+    name = "Debug test (go.mod)",
+    request = "launch",
+    mode = "test",
+    program = "./${relativeFileDirname}"
+  },
+  {
+    type = "delve",
+    name = "Attach to process",
+    request = "attach",
+    processId = require('dap.utils').pick_process,
+    mode = "local",
+  }
+}
+
+dap.listeners.before.event_terminated.dapui_config = function()
+ dapui.close()
+end
+dap.listeners.before.event_exited.dapui_config = function()
+ dapui.close()
+end
+
+vim.api.nvim_create_user_command('AttachToProcess', function()
+  require('dap').run({type = "delve", name = "Attach to process", request = "attach"})
+end, {})
 
 -- neotest
 require("neotest").setup({
@@ -519,3 +543,64 @@ require("gopher").setup {
     iferr = "iferr",
   },
 }
+
+-- See `:help telescope.builtin`
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>/', function()
+  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = '[/] Fuzzily search in current buffer]' })
+
+vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+
+
+vim.keymap.set('n', 'j', 'gj', { noremap = true })
+vim.keymap.set('n', 'k', 'gk', { noremap = true })
+
+-- No more esc
+vim.keymap.set('n', '<C-C>', '<Esc>', { noremap = true })
+
+-- Fast saving
+vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true })
+
+-- NERDTree
+vim.keymap.set('n', '<leader>nt', ':NERDTreeToggle<CR>', { noremap = true })
+
+-- Toggle theme
+vim.keymap.set('n', '<leader>bg', ':let &background = (&background == "dark" ? "light" : "dark")<CR>', { noremap = true })
+
+-- vim-test
+vim.keymap.set('n', '<leader>t', ':TestNearest<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>tf', ':TestFile<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>ta', ':TestSuite<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>tl', ':TestLast<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>tg', ':TestVisit<CR>', { noremap = true })
+
+
+vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
+vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
+vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
+vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
+vim.keymap.set('n', '<Leader>q', function()
+require('dap').toggle_breakpoint() end)
+vim.keymap.set('n', '<Leader>Q', function() require('dap').set_breakpoint()
+end)
+vim.keymap.set('n', '<Leader>lp', function()
+require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
+end)
+vim.keymap.set('n', '<Leader>br', function() require('dap').repl.open() end)
+vim.keymap.set('n', '<Leader>bl', function() require('dap').run_last() end)
+
+vim.keymap.set('n', '<Leader>bw', function() dapui.open() end)
+vim.keymap.set('n', '<Leader>bW', function() dapui.close() end)
+
+vim.keymap.set('n', '<leader>dr', require('dap').repl.open, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>da', ':AttachToProcess<CR>', { noremap = true, silent = true })

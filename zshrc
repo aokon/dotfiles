@@ -58,7 +58,7 @@ ZSH_THEME="lambda"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colorize github bundler rake ruby asdf dotenv)
+plugins=(git colorize github bundler rake ruby dotenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -90,6 +90,8 @@ if type brew &>/dev/null; then
   compinit
 fi
 
+PATH="$HOME/bin:$PATH"
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
@@ -106,7 +108,7 @@ fi
 
 export ASDF_DATA_DIR="$HOME/.asdf"
 
-PATH="$ASDF_DATA_DIR/shims:$PATH"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 # Add dev settings from env.sh
 [[ -s "$HOME/.devrc" ]] && source "$HOME/.devrc"

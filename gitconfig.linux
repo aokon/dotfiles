@@ -71,6 +71,9 @@
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 
+[url "git@gitlab.dialecticanet.com:"]
+	insteadOf = https://gitlab.dialecticanet.com/
+
 [user]
 	name = Adam Okoń
 	email = adam.okon@elegantcode.pl
