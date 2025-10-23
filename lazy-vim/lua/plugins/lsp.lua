@@ -1,17 +1,18 @@
 return {
   -- LSP Configuration & Plugins
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {},
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
         "ruby_lsp",
         "standardrb",
-        "html",
         "gopls",
+        "steep",
+        "html",
         "lua_ls",
       },
       handlers = {
@@ -50,8 +51,8 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      "mason-org/mason.nvim",
+      "mason-org/mason-lspconfig.nvim",
     },
   },
 }
