@@ -45,6 +45,13 @@ return {
             },
           })
         end,
+        steep = function()
+          require("lspconfig").steep.setup({
+            cmd = { "steep", "langserver" },
+            filetypes = { "ruby" },
+            root_dir = require("lspconfig.util").root_pattern("Steepfile", "Gemfile", ".git"),
+          })
+        end,
       },
     },
   },
